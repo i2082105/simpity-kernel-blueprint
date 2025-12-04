@@ -26,10 +26,16 @@ export function HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl animate-slide-up stagger-1">
+          <p className="text-xl text-muted-foreground mb-4 max-w-2xl animate-slide-up stagger-1">
             We solve problems where documentation ends and reverse engineering begins. 
             Trusted by teams building EDR, ITDR, AD Security, DSPM, DLP, PAM, and endpoint agents.
           </p>
+
+          {/* NDA Badge - builds trust early */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 mb-8 animate-slide-up stagger-1">
+            <Shield className="w-3.5 h-3.5 text-primary" />
+            <span className="text-xs text-muted-foreground">All engagements protected by NDA</span>
+          </div>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-16 animate-slide-up stagger-2">
