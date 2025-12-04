@@ -12,6 +12,8 @@ import Engagement from "./pages/Engagement";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Resources from "./pages/Resources";
+import History from "./pages/History";
+import Blog from "./pages/Blog";
 import KernelCapability from "./pages/capability/KernelCapability";
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +41,8 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

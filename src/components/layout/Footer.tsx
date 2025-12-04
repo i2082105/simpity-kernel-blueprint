@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   capabilities: [
@@ -12,10 +12,12 @@ const footerLinks = {
   ],
   company: [
     { name: "About Us", href: "/about" },
+    { name: "Our History", href: "/history" },
     { name: "Methodology", href: "/methodology" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Technology", href: "/technology" },
     { name: "Engagement Models", href: "/engagement" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
   resources: [
@@ -29,25 +31,46 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center">
                 <span className="text-primary font-mono font-bold text-sm">S</span>
               </div>
               <span className="text-xl font-semibold text-foreground">Simpity</span>
             </Link>
-            <p className="text-muted-foreground text-sm mb-6">
-              Deep Windows Security Engineering. Trusted by teams building EDR, ITDR, AD Security, and endpoint agents.
+            <p className="text-muted-foreground text-sm mb-4">
+              Deep Windows Security Engineering since 2007. Trusted by teams building EDR, ITDR, AD Security, and endpoint agents.
             </p>
             <a 
               href="mailto:info@simpity.eu" 
-              className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors mb-6"
             >
               <Mail className="w-4 h-4" />
               info@simpity.eu
             </a>
+            
+            {/* Addresses */}
+            <div className="space-y-4 mt-6">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                <div className="text-sm text-muted-foreground">
+                  <p className="font-medium text-foreground">Germany</p>
+                  <p>Lise-Meitner Straße 1</p>
+                  <p>85716, Unterschleißheim</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                <div className="text-sm text-muted-foreground">
+                  <p className="font-medium text-foreground">Poland</p>
+                  <p>The Warsaw Hub B</p>
+                  <p>Rondo Daszyńskiego, 2B</p>
+                  <p>00-843 Warsaw</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Capabilities */}
@@ -104,7 +127,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Simpity. All rights reserved.
+            © 2007–2025 Simpity. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Deep Security Engineering for Windows Internals
