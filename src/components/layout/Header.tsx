@@ -22,7 +22,14 @@ const navigation = [
   { name: "Methodology", href: "/methodology" },
   { name: "Technology", href: "/technology" },
   { name: "Engagement", href: "/engagement" },
-  { name: "About", href: "/about" },
+  {
+    name: "About",
+    href: "/about",
+    children: [
+      { name: "About Us", href: "/about" },
+      { name: "Our History", href: "/history" },
+    ],
+  },
   { name: "Blog", href: "/blog" },
 ];
 
