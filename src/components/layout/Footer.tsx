@@ -145,6 +145,15 @@ export function Footer() {
               <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Terms
               </Link>
+              <button 
+                onClick={() => {
+                  localStorage.removeItem("cookieConsent");
+                  window.location.reload();
+                }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Cookie Settings
+              </button>
             </div>
           </div>
         </div>
