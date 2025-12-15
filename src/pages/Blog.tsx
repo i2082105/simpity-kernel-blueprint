@@ -131,13 +131,9 @@ export default function Blog() {
                   </span>
                 </div>
                 
-                <Link 
-                  to="#" 
-                  className="inline-flex items-center gap-2 text-sm text-primary hover:gap-3 transition-all"
-                >
-                  Read article
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                  <span className="px-2 py-0.5 text-xs bg-secondary rounded">Coming Soon</span>
+                </span>
               </article>
             ))}
           </div>
