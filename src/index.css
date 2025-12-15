@@ -176,6 +176,12 @@
   }
 }
 
+/* Scroll offset for fixed header */
+section,
+[id] {
+  scroll-margin-top: 80px;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

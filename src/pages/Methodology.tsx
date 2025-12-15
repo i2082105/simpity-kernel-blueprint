@@ -82,7 +82,7 @@ const reverseEngineeringProcess = [
   },
   {
     title: "Adaptation",
-    description: "This analysis enables us to build resilient components that adapt to changes, rather than break."
+    description: "This analysis enables us to build resilient components that adapt to changes introduced by Windows updates and Patch Tuesday releases, rather than break."
   }
 ];
 
@@ -115,10 +115,17 @@ export default function Methodology() {
               "We don't rely on assumptions or public APIs. Our engineering is built on a 
               deep, verifiable understanding of Windows internals."
             </blockquote>
+          <p className="text-muted-foreground mb-4">
+              This foundation enables us to operate safely within highly protected areas such as LSASS, 
+              using controlled instrumentation and monitoring techniques, guarantee resilience against 
+              undocumented changes, and create security controls that cannot be achieved through 
+              standard development practices.
+            </p>
             <p className="text-muted-foreground">
-              This foundation enables us to operate in highly protected areas like LSASS, 
-              guarantee resilience against undocumented changes, and create security controls 
-              that cannot be achieved through standard development practices.
+              Depending on the problem, we deliberately choose the appropriate execution level — kernel-mode, 
+              user-mode, or the Windows authentication pipeline — instead of forcing every control into the kernel. 
+              This allows us to build precise, stable security mechanisms where they are most effective, 
+              without unnecessary risk or complexity.
             </p>
           </div>
         </div>
@@ -132,7 +139,7 @@ export default function Methodology() {
               Engineering Process
             </h2>
             <p className="text-muted-foreground">
-              A systematic approach to developing kernel-level security components 
+              A systematic approach to developing low-level Windows security components 
               with enterprise-grade reliability.
             </p>
           </div>
