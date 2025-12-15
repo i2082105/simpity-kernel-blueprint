@@ -15,6 +15,11 @@ import Resources from "./pages/Resources";
 import History from "./pages/History";
 import Blog from "./pages/Blog";
 import KernelCapability from "./pages/capability/KernelCapability";
+import AuthenticationCapability from "./pages/capability/AuthenticationCapability";
+import PatchTuesdayCapability from "./pages/capability/PatchTuesdayCapability";
+import FilesystemCapability from "./pages/capability/FilesystemCapability";
+import DetectionCapability from "./pages/capability/DetectionCapability";
+import ActiveDirectoryCapability from "./pages/capability/ActiveDirectoryCapability";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,11 +34,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/capabilities" element={<Capabilities />} />
           <Route path="/capabilities/kernel" element={<KernelCapability />} />
-          <Route path="/capabilities/authentication" element={<KernelCapability />} />
-          <Route path="/capabilities/patch-tuesday" element={<KernelCapability />} />
-          <Route path="/capabilities/filesystem" element={<KernelCapability />} />
-          <Route path="/capabilities/detection" element={<KernelCapability />} />
-          <Route path="/capabilities/active-directory" element={<KernelCapability />} />
+          <Route path="/capabilities/authentication" element={<AuthenticationCapability />} />
+          <Route path="/capabilities/patch-tuesday" element={<PatchTuesdayCapability />} />
+          <Route path="/capabilities/filesystem" element={<FilesystemCapability />} />
+          <Route path="/capabilities/detection" element={<DetectionCapability />} />
+          <Route path="/capabilities/active-directory" element={<ActiveDirectoryCapability />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/methodology" element={<Methodology />} />
           <Route path="/technology" element={<Technology />} />
