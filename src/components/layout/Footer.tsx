@@ -102,8 +102,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Offices */}
+          {/* Company & Offices */}
           <div>
+            <p className="text-sm font-medium text-foreground mb-4">
+              Simpity | A GP Solutions Company
+            </p>
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
               Offices
             </h4>
