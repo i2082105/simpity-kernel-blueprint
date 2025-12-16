@@ -42,11 +42,11 @@ export function Header() {
       <nav className="container mx-auto px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center overflow-hidden">
+          <Link to="/" className="flex items-center h-14 overflow-hidden">
             <img 
               src="/SimpITyLogo.svg" 
               alt="Simpity - Built Deep for Security" 
-              className="h-14 w-auto scale-110"
+              className="h-[120%] w-auto"
             />
           </Link>
 
