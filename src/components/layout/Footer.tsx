@@ -53,19 +53,12 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Deep Windows Security Engineering since 2007.
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Microsoft-signed kernel development</li>
               <li>HVCI/WDAC compatible</li>
               <li>500+ DC scale</li>
               <li>24–48h Patch Tuesday recovery</li>
             </ul>
-            <a 
-              href="mailto:info@simpity.eu" 
-              className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-            >
-              <Mail className="w-4 h-4" />
-              info@simpity.eu
-            </a>
           </div>
 
           {/* Navigation */}
@@ -127,6 +120,13 @@ export function Footer() {
                 </p>
               </div>
             </div>
+            <a 
+              href="mailto:info@simpity.eu" 
+              className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium mt-6"
+            >
+              <Mail className="w-4 h-4" />
+              info@simpity.eu
+            </a>
           </div>
         </div>
       </div>
