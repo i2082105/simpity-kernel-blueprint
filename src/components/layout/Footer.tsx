@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Mail, ArrowRight, Shield, FileCheck, Building2, Clock, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const navigation = [
   { name: "Capabilities", href: "/capabilities" },
@@ -18,6 +20,25 @@ const trustBadges = [
 ];
 
 export function Footer() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const toggleTheme = () => {
+    if (theme === "dark") {
+      setTheme("light");
+    } else if (theme === "light") {
+      setTheme("light-dark");
+    } else if (theme === "light-dark") {
+      setTheme("mixed");
+    } else {
+      setTheme("dark");
+    }
+  };
+
   return (
     <footer className="bg-card border-t border-border">
       {/* CTA Section */}
@@ -161,7 +182,15 @@ export function Footer() {
         <div className="container mx-auto px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2007–2025 Simpity. All rights reserved.
+              <button
+                onClick={toggleTheme}
+                className="hover:text-foreground transition-colors cursor-pointer inline-block bg-transparent border-0 p-0 font-inherit text-inherit"
+                aria-label="Toggle theme"
+                title={mounted ? `Switch to ${theme === "dark" ? "light" : theme === "light" ? "light-dark" : theme === "light-dark" ? "mixed" : "dark"} theme` : "Toggle theme"}
+              >
+                ©
+              </button>
+              {" "}2007–2025 Simpity. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
