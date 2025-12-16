@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Building, Shield, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -14,17 +15,60 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Get admin emails from environment variable (comma-separated)
+    const adminEmails = import.meta.env.VITE_ADMIN_EMAILS || "a.svirski@simpity.eu";
+    const adminEmailList = adminEmails.split(",").map(email => email.trim()).filter(Boolean);
     
-    toast({
-      title: "Message sent",
-      description: "We'll respond within 24-48 business hours.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    const templateParams = {
+      from_name: formData.get("name") as string,
+      from_email: formData.get("email") as string,
+      company: formData.get("company") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+      to_email: adminEmailList.join(", "), // EmailJS supports comma-separated emails
+    };
+
+    try {
+      // EmailJS configuration - these should be in environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS configuration is missing. Please check your environment variables.");
+      }
+
+      if (adminEmailList.length === 0) {
+        throw new Error("No admin emails configured. Please set VITE_ADMIN_EMAILS in your .env file.");
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      toast({
+        title: "Message sent successfully",
+        description: "We'll respond within 24-48 business hours.",
+      });
+
+      form.reset();
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly at info@simpity.eu",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
