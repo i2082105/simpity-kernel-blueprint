@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CookieConsent } from "../CookieConsent";
+import { ScrollToTop } from "../ScrollToTop";
 
 interface LayoutProps {
   children: ReactNode;
@@ -23,6 +24,7 @@ export function Layout({ children }: LayoutProps) {
       </main>
       <Footer />
       <CookieConsent />
+      <ScrollToTop />
     </div>
   );
 }
