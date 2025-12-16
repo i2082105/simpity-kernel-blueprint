@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import simpityLogo from "@/assets/simpity-logo.png";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -43,11 +44,12 @@ export function Header() {
       <nav className="container mx-auto px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center">
-              <span className="text-primary font-mono font-bold text-sm">S</span>
-            </div>
-            <span className="text-xl font-semibold text-foreground">Simpity</span>
+          <Link to="/" className="flex items-center">
+            <img 
+              src={simpityLogo} 
+              alt="Simpity - Built Deep for Security" 
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
