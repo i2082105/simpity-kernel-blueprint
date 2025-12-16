@@ -17,8 +17,8 @@ const navigation = [
       { name: "Active Directory at Scale", href: "/capabilities/active-directory" },
     ],
   },
-  { name: "Case Studies", href: "/case-studies" },
   { name: "Methodology", href: "/methodology" },
+  { name: "Case Studies", href: "/case-studies" },
   { name: "Technology", href: "/technology" },
   { name: "Engagement", href: "/engagement" },
   {
