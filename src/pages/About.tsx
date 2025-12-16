@@ -82,7 +82,7 @@ export default function About() {
             <Target className="w-12 h-12 text-primary mx-auto mb-6" />
             <h2 className="text-2xl font-bold text-foreground mb-4">Our Mission</h2>
             <p className="text-lg text-muted-foreground">
-              To provide security product companies with the specialized engineering required 
+              Over 18 years we provide security for product companies with the specialized engineering required 
               to build robust, reliable, and bypass-proof solutions. We solve problems at the 
               depth where documentation ends and reverse engineering begins.
             </p>
