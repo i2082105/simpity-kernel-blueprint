@@ -38,11 +38,11 @@ export function Header() {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#080C15] border-b border-border">
       <nav className="container mx-auto px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center justify-center h-14 overflow-hidden bg-background">
+          <Link to="/" className="flex items-center justify-center h-14 overflow-hidden bg-[#080C15]">
             <img 
               src="/SimpITyLogo.svg" 
               alt="Simpity - Built Deep for Security" 
