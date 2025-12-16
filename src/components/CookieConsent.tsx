@@ -6,21 +6,50 @@ export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookieConsent");
-    if (!consent) {
+    let timer: NodeJS.Timeout | null = null;
+    
+    const consentData = localStorage.getItem("cookieConsent");
+    if (!consentData) {
       // Small delay for better UX
-      const timer = setTimeout(() => setIsVisible(true), 1000);
-      return () => clearTimeout(timer);
+      timer = setTimeout(() => setIsVisible(true), 1000);
+    } else {
+      try {
+        const consent = JSON.parse(consentData);
+        // Check if consent has expired
+        if (consent.expiresAt && new Date(consent.expiresAt) > new Date()) {
+          // Consent is still valid, don't show the banner
+          return;
+        } else {
+          // Consent expired or invalid format, show the banner
+          timer = setTimeout(() => setIsVisible(true), 1000);
+        }
+      } catch {
+        // Invalid JSON, treat as no consent
+        timer = setTimeout(() => setIsVisible(true), 1000);
+      }
     }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("cookieConsent", "accepted");
+    // Set expiration to 1 year from now
+    const expiresAt = new Date();
+    expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+    
+    const consentData = {
+      status: "accepted",
+      expiresAt: expiresAt.toISOString()
+    };
+    
+    localStorage.setItem("cookieConsent", JSON.stringify(consentData));
     setIsVisible(false);
   };
 
   const handleDecline = () => {
-    localStorage.setItem("cookieConsent", "declined");
+    localStorage.setItem("cookieConsent", JSON.stringify({ status: "declined" }));
     setIsVisible(false);
   };
 
