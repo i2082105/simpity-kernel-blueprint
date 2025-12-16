@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import simpityLogo from "@/assets/simpity-logo.png";
 
 const navigation = [
-  { name: "Home", href: "/" },
   {
     name: "Capabilities",
     href: "/capabilities",
