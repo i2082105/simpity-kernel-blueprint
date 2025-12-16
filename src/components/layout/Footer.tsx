@@ -74,7 +74,7 @@ export function Footer() {
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a 
-                  href="https://x.com/simpity" 
+                  href="https://x.com/_SimpITy" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
