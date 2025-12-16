@@ -14,6 +14,9 @@ import Contact from "./pages/Contact";
 import Resources from "./pages/Resources";
 import History from "./pages/History";
 import Blog from "./pages/Blog";
+import Privacy from "./pages/Privacy";
+import Security from "./pages/Security";
+import Terms from "./pages/Terms";
 import KernelCapability from "./pages/capability/KernelCapability";
 import AuthenticationCapability from "./pages/capability/AuthenticationCapability";
 import PatchTuesdayCapability from "./pages/capability/PatchTuesdayCapability";
@@ -48,6 +51,9 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/history" element={<History />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
