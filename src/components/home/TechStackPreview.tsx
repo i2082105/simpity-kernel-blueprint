@@ -27,7 +27,7 @@ export function TechStackPreview() {
               to enterprise Active Directory deployments. Our engineers operate where 
               documentation ends.
             </p>
-            <Link to="/technology">
+            <Link to="/technology" onClick={() => window.scrollTo(0, 0)}>
               <Button variant="outline">
                 View Full Technology Matrix
                 <ArrowRight className="w-4 h-4" />
