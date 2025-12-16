@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, ArrowRight, Shield, FileCheck, Building2, Clock } from "lucide-react";
+import { Mail, ArrowRight, Shield, FileCheck, Building2, Clock, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
@@ -53,12 +53,37 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Deep Windows Security Engineering since 2007.
             </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
               <li>Microsoft-signed kernel development</li>
               <li>HVCI/WDAC compatible</li>
               <li>500+ DC scale</li>
               <li>24–48h Patch Tuesday recovery</li>
             </ul>
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                Follow Us
+              </p>
+              <div className="flex items-center gap-3">
+                <a 
+                  href="https://www.linkedin.com/company/simpity" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://x.com/simpity" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="X (Twitter)"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Navigation */}
