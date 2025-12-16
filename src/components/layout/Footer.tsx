@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, ArrowRight, Shield, FileCheck, Building2, Clock } from "lucide-react";
+import { Mail, ArrowRight, Shield, FileCheck, Building2, Clock, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
@@ -59,13 +59,31 @@ export function Footer() {
               <li>500+ DC scale</li>
               <li>24–48h Patch Tuesday recovery</li>
             </ul>
-            <a 
-              href="mailto:info@simpity.eu" 
-              className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-            >
-              <Mail className="w-4 h-4" />
-              info@simpity.eu
-            </a>
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                Follow Us
+              </p>
+              <div className="flex items-center gap-3">
+                <a 
+                  href="https://www.linkedin.com/company/simpity" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://x.com/_SimpITy" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="X (Twitter)"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -102,8 +120,11 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Offices */}
+          {/* Company & Offices */}
           <div>
+            <p className="text-sm font-medium text-foreground mb-4">
+              Simpity | A GP Solutions Company
+            </p>
             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
               Offices
             </h4>
@@ -124,6 +145,13 @@ export function Footer() {
                 </p>
               </div>
             </div>
+            <a 
+              href="mailto:info@simpity.eu" 
+              className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium mt-6"
+            >
+              <Mail className="w-4 h-4" />
+              info@simpity.eu
+            </a>
           </div>
         </div>
       </div>

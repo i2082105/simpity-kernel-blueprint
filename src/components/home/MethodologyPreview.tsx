@@ -41,11 +41,16 @@ export function MethodologyPreview() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               From Architecture to Signed Driver
             </h2>
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-lg text-muted-foreground mb-4">
               Our engineering methodology ensures compatibility across Windows versions, 
               including in HVCI/WDAC environments. We don&apos;t rely on assumptions or 
               public APIs—our engineering is built on a deep, verifiable understanding 
               of Windows internals.
+            </p>
+            <p className="text-muted-foreground mb-6">
+              Depending on the problem, we deliberately choose the appropriate execution level — kernel-mode, 
+              user-mode, or the Windows authentication pipeline — to build precise, stable security mechanisms 
+              where they are most effective.
             </p>
             <Link to="/methodology">
               <Button variant="outline">

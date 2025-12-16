@@ -25,8 +25,8 @@ const caseStudies = [
     problem: "A client's EDR solution was ineffective against ransomware targeting their NetApp NAS. Attacks encrypted critical file shares before the endpoint agent could react, leading to significant data loss.",
     rootCause: "Endpoint-based detection operated too late in the attack chain. By the time the agent detected the threat, encryption was already underway.",
     method: [
-      "Developed a file system minifilter driver that monitored I/O request packets (IRPs) for high-entropy write patterns characteristic of encryption.",
-      "Upon detecting the first few attempts, the driver immediately terminated the offending process at the kernel level."
+      "Developed a behavior-based detection module that analyzes file access patterns for signs of encryption activity, including high-entropy write patterns and rapid file modifications.",
+      "Upon detecting anomalous write patterns, the system immediately alerts and terminates the offending process before widespread damage occurs."
     ],
     outcome: "The solution stops ransomware attacks within the first 1-2 seconds of activity. Malicious processes are terminated with near-zero data loss, before widespread file damage can occur.",
     metric: "1-2 sec response",
