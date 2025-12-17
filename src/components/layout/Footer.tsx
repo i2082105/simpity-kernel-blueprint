@@ -104,6 +104,18 @@ export function Footer() {
                   <Twitter className="w-5 h-5" />
                 </a>
               </div>
+              <p className="text-xs text-muted-foreground mt-4">
+                Review our corporate brochure{" "}
+                <a
+                  href="/brochures/Simpity_Deep_Security_Engineering.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary/80 underline"
+                >
+                  here
+                </a>
+                .
+              </p>
             </div>
           </div>
 
