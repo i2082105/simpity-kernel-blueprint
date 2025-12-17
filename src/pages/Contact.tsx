@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,14 +6,41 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Building, Shield, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTheme } from "next-themes";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
   const { toast } = useToast();
+  const { theme } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [captchaTheme, setCaptchaTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    // Determine CAPTCHA theme based on current theme
+    if (theme === "dark" || theme === "light-dark" || theme === "mixed") {
+      setCaptchaTheme("dark");
+    } else {
+      setCaptchaTheme("light");
+    }
+  }, [theme]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Check if CAPTCHA is completed (only if reCAPTCHA is configured)
+    const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+    if (recaptchaSiteKey && !captchaToken) {
+      toast({
+        title: "Please complete the CAPTCHA",
+        description: "Please verify that you're not a robot before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     const form = e.target as HTMLFormElement;
@@ -59,6 +86,8 @@ export default function Contact() {
       });
 
       form.reset();
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
     } catch (error) {
       console.error("Failed to send email:", error);
       toast({
@@ -66,9 +95,16 @@ export default function Contact() {
         description: "Please try again or contact us directly at info@simpity.eu",
         variant: "destructive",
       });
+      // Reset CAPTCHA on error so user can try again
+      setCaptchaToken(null);
+      recaptchaRef.current?.reset();
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
   };
 
   return (
@@ -149,7 +185,28 @@ export default function Contact() {
                     required
                   />
                 </div>
-                <Button type="submit" variant="hero" className="w-full" disabled={isSubmitting}>
+                {import.meta.env.VITE_RECAPTCHA_SITE_KEY ? (
+                  <div className="flex justify-center">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      onChange={handleCaptchaChange}
+                      theme={captchaTheme}
+                    />
+                  </div>
+                ) : (
+                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
+                    <p className="text-sm text-muted-foreground text-center">
+                      
+                    </p>
+                  </div>
+                )}
+                <Button 
+                  type="submit" 
+                  variant="hero" 
+                  className="w-full" 
+                  disabled={isSubmitting || (import.meta.env.VITE_RECAPTCHA_SITE_KEY && !captchaToken)}
+                >
                   {isSubmitting ? "Sending..." : "Send Message"}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
