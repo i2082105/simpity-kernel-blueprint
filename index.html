@@ -15,7 +15,31 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Simpity | Built Deep for Security" />
     <meta name="twitter:description" content="Engineering security at the undocumented layer of Windows." />
-    
+
+    <!-- Default favicon for all domains -->
+    <link id="site-favicon" rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Override favicon for specific production domains -->
+    <script>
+      (function () {
+        try {
+          var host = window.location.hostname;
+          var isProdDomain =
+            host === "simpity.eu" ||
+            host === "www.simpity.eu" ||
+            host === "simpity-kernel-blueprint.lovable.app";
+          var link = document.querySelector('link[rel="icon"]') || document.createElement("link");
+          link.rel = "icon";
+          link.type = "image/x-icon";
+          link.href = isProdDomain ? "/prod/favicon.ico" : "/favicon.ico";
+          if (!link.parentNode) {
+            document.head.appendChild(link);
+          }
+        } catch (e) {
+          // Fallback: keep default favicon
+        }
+      })();
+    </script>
+
     <link rel="canonical" href="https://simpity.eu" />
   </head>
 
