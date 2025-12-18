@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useEffect } from "react";
 
 const caseStudies = [
   {
@@ -90,6 +91,22 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to anchor if hash is present in URL
+    if (location.hash) {
+      const id = location.hash.substring(1); // Remove the # symbol
+      const element = document.getElementById(id);
+      if (element) {
+        // Small delay to ensure page is rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
+
   return (
     <Layout>
       {/* Hero */}
@@ -130,7 +147,21 @@ export default function CaseStudies() {
                   </div>
                   
                   <h2 className="text-2xl font-bold text-foreground mb-6">
-                    {study.title}
+                    <a 
+                      href={`#${study.id}`}
+                      className="hover:text-primary transition-colors cursor-pointer"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById(study.id);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          // Update URL without reload
+                          window.history.pushState(null, '', `#${study.id}`);
+                        }
+                      }}
+                    >
+                      {study.title}
+                    </a>
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-8">
