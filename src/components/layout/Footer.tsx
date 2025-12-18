@@ -202,7 +202,7 @@ export function Footer() {
               >
                 ©
               </button>
-              {" "}2007–2025 Simpity. All rights reserved.
+              {" "}2007-{new Date().getFullYear()}  Simpity division at GP Solutions. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
