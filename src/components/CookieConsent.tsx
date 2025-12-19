@@ -45,6 +45,15 @@ export function CookieConsent() {
     };
     
     localStorage.setItem("cookieConsent", JSON.stringify(consentData));
+    
+    // Trigger custom event for GoogleAnalytics component
+    window.dispatchEvent(new Event('cookieConsentAccepted'));
+    // Also trigger storage event for cross-window sync
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'cookieConsent',
+      newValue: JSON.stringify(consentData)
+    }));
+    
     setIsVisible(false);
   };
 
