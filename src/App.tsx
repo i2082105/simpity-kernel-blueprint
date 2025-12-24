@@ -26,6 +26,10 @@ import PatchTuesdayCapability from "./pages/capability/PatchTuesdayCapability";
 import FilesystemCapability from "./pages/capability/FilesystemCapability";
 import DetectionCapability from "./pages/capability/DetectionCapability";
 import ActiveDirectoryCapability from "./pages/capability/ActiveDirectoryCapability";
+import ProcessInjectionCapability from "./pages/capability/ProcessInjectionCapability";
+import CredentialProvidersCapability from "./pages/capability/CredentialProvidersCapability";
+import ADCSCapability from "./pages/capability/ADCSCapability";
+import ExchangeCapability from "./pages/capability/ExchangeCapability";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,11 +52,15 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/capabilities" element={<Capabilities />} />
             <Route path="/capabilities/kernel" element={<KernelCapability />} />
+            <Route path="/capabilities/process-injection" element={<ProcessInjectionCapability />} />
             <Route path="/capabilities/authentication" element={<AuthenticationCapability />} />
+            <Route path="/capabilities/credential-providers" element={<CredentialProvidersCapability />} />
+            <Route path="/capabilities/adcs" element={<ADCSCapability />} />
             <Route path="/capabilities/patch-tuesday" element={<PatchTuesdayCapability />} />
             <Route path="/capabilities/filesystem" element={<FilesystemCapability />} />
             <Route path="/capabilities/detection" element={<DetectionCapability />} />
             <Route path="/capabilities/active-directory" element={<ActiveDirectoryCapability />} />
+            <Route path="/capabilities/exchange" element={<ExchangeCapability />} />
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/methodology" element={<Methodology />} />
             <Route path="/technology" element={<Technology />} />
