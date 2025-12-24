@@ -9,7 +9,11 @@ import {
   Brain, 
   Network,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Syringe,
+  IdCard,
+  Award,
+  Mail
 } from "lucide-react";
 
 const capabilities = [
@@ -27,6 +31,19 @@ const capabilities = [
     problem: "Standard security solutions operate too late in the execution chain to prevent advanced threats.",
   },
   {
+    icon: Syringe,
+    title: "System Process Injection & API Interception",
+    slug: "process-injection",
+    description: "Injection into system processes to intercept internal Windows API calls at runtime, enabling real-time visibility and enforcement inside trusted execution paths.",
+    features: [
+      "Intercept internal API calls via hooks",
+      "Capture real parameter values before execution",
+      "Block or allow calls in real time",
+      "Execute logic inside the security context of the intercepted thread"
+    ],
+    problem: "Standard monitoring occurs outside the trusted process context, missing internal API calls and their parameters.",
+  },
+  {
     icon: KeyRound,
     title: "Authentication Flow Control",
     slug: "authentication",
@@ -38,6 +55,32 @@ const capabilities = [
       "Credential abuse blocking"
     ],
     problem: "Credential-based attacks like DCSync and Pass-the-Hash bypass traditional detection.",
+  },
+  {
+    icon: IdCard,
+    title: "Windows Credential Providers Engineering",
+    slug: "credential-providers",
+    description: "Low-level customization and wrapping of Windows Credential Providers to control and extend authentication behavior without breaking OS stability.",
+    features: [
+      "Custom logon UI behavior",
+      "Wrapping and chaining existing credential providers",
+      "Safe integration into Windows authentication flow",
+      "Stable operation across Windows versions"
+    ],
+    problem: "Credential Provider development requires deep understanding of undocumented Windows authentication internals.",
+  },
+  {
+    icon: Award,
+    title: "Active Directory Certificate Services (AD CS) Security",
+    slug: "adcs",
+    description: "Detection and prevention of certificate-based attacks abusing AD Certificate Services, including privilege escalation and persistence techniques.",
+    features: [
+      "Detect malicious certificate enrollment patterns",
+      "Prevent abuse of misconfigured templates",
+      "Block certificate-based lateral movement",
+      "Monitor for certificate persistence techniques"
+    ],
+    problem: "AD CS misconfigurations enable privilege escalation and persistent access that traditional monitoring misses.",
   },
   {
     icon: Calendar,
@@ -58,12 +101,12 @@ const capabilities = [
     slug: "filesystem",
     description: "Driver-level monitors to detect and stop ransomware and anomalous file activity at the earliest stages.",
     features: [
-      "NTFS minifilter development",
-      "IRP packet analysis",
-      "NetApp/EMC integration",
-      "Real-time encryption detection"
+      "Driver-level monitoring of file activity",
+      "Early ransomware and mass-change detection",
+      "Volume Shadow Copy monitoring and protection",
+      "NAS and network share security"
     ],
-    problem: "Ransomware encrypts critical data before endpoint agents can react.",
+    problem: "Ransomware encrypts critical data and deletes backup snapshots before endpoint agents can react.",
   },
   {
     icon: Brain,
@@ -90,6 +133,19 @@ const capabilities = [
       "DC process integration"
     ],
     problem: "Enterprise AD environments require specialized engineering to monitor without performance impact.",
+  },
+  {
+    icon: Mail,
+    title: "Microsoft Exchange Security Instrumentation",
+    slug: "exchange",
+    description: "Monitoring and blocking sensitive Microsoft Exchange actions through low-level instrumentation, without relying on mailbox-level logs only.",
+    features: [
+      "Detect and block administrative mailbox access",
+      "Detect delegate logons and privilege misuse",
+      "Monitor critical Exchange authentication paths",
+      "Low-level instrumentation beyond standard logs"
+    ],
+    problem: "Exchange administrators can access sensitive data without leaving clear audit trails.",
   },
 ];
 

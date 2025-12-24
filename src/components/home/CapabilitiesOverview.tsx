@@ -6,7 +6,11 @@ import {
   HardDrive, 
   Brain, 
   Network,
-  ArrowRight 
+  ArrowRight,
+  Syringe,
+  IdCard,
+  Award,
+  Mail
 } from "lucide-react";
 
 const capabilities = [
@@ -17,10 +21,28 @@ const capabilities = [
     href: "/capabilities/kernel",
   },
   {
+    icon: Syringe,
+    title: "System Process Injection & API Interception",
+    description: "Injection into system processes to intercept internal Windows API calls at runtime, enabling real-time visibility and enforcement.",
+    href: "/capabilities/process-injection",
+  },
+  {
     icon: KeyRound,
     title: "Authentication Flow Control",
     description: "Safely instrument LSASS for real-time visibility and blocking of credential abuse like Golden Ticket, DCSync, and Pass-the-Hash.",
     href: "/capabilities/authentication",
+  },
+  {
+    icon: IdCard,
+    title: "Windows Credential Providers Engineering",
+    description: "Low-level customization and wrapping of Windows Credential Providers to control and extend authentication behavior.",
+    href: "/capabilities/credential-providers",
+  },
+  {
+    icon: Award,
+    title: "AD CS Security",
+    description: "Detection and prevention of certificate-based attacks abusing AD Certificate Services, including privilege escalation and persistence.",
+    href: "/capabilities/adcs",
   },
   {
     icon: Calendar,
@@ -31,7 +53,7 @@ const capabilities = [
   {
     icon: HardDrive,
     title: "File System & NAS Security",
-    description: "Driver-level monitors to detect and stop ransomware and anomalous file activity at the earliest stages.",
+    description: "Driver-level monitors with Volume Shadow Copy protection to detect and stop ransomware at the earliest stages.",
     href: "/capabilities/filesystem",
   },
   {
@@ -45,6 +67,12 @@ const capabilities = [
     title: "Active Directory at Scale",
     description: "Stable, zero-lag monitoring solutions for high-load environments with hundreds of domain controllers.",
     href: "/capabilities/active-directory",
+  },
+  {
+    icon: Mail,
+    title: "Exchange Security Instrumentation",
+    description: "Monitoring and blocking sensitive Microsoft Exchange actions through low-level instrumentation beyond mailbox logs.",
+    href: "/capabilities/exchange",
   },
 ];
 
