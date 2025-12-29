@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+const GA_MEASUREMENT_ID = 'G-N4W5ZP3F8D';
 
 export const initGA = () => {
   if (typeof window === 'undefined') return;
