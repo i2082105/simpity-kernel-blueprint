@@ -24,7 +24,7 @@ const engagementModels = [
     icon: Users,
     title: "Specialized Team",
     subtitle: "Standalone development",
-    description: "A self-contained Simpity team (engineers, RE, QA) led by a technical director, building a complex standalone module.",
+    description: "A self-contained Simpity engineering team led by a technical director, building a complex standalone module.",
     whenToUse: "To accelerate time-to-market for a new feature by outsourcing the most challenging component.",
     timeline: "3-12 months",
     included: [
