@@ -4,6 +4,16 @@ import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 
 const blogPosts = [
   {
+    id: 0,
+    slug: "ad-password-policies-security-theater",
+    title: "Your AD Password Policies Are Security Theater",
+    excerpt: "Here's proof with scripts you can test today. Plus a defense that actually works.",
+    author: "Alexei Belous",
+    date: "2026-02-19",
+    readTime: "12 min read",
+    category: "AD Security",
+  },
+  {
     id: 1,
     title: "Understanding Kernel Callbacks: A Deep Dive into Windows Security Architecture",
     excerpt: "Explore how kernel callbacks work at the deepest level of Windows and why they're essential for modern endpoint security products.",
@@ -131,9 +141,19 @@ export default function Blog() {
                   </span>
                 </div>
                 
-                <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-                  <span className="px-2 py-0.5 text-xs bg-secondary rounded">Coming Soon</span>
-                </span>
+                {'slug' in post ? (
+                  <Link
+                    to={`/blog/${(post as any).slug}`}
+                    className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                  >
+                    Read article
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                ) : (
+                  <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-0.5 text-xs bg-secondary rounded">Coming Soon</span>
+                  </span>
+                )}
               </article>
             ))}
           </div>

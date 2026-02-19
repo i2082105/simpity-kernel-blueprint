@@ -30,6 +30,7 @@ import ProcessInjectionCapability from "./pages/capability/ProcessInjectionCapab
 import CredentialProvidersCapability from "./pages/capability/CredentialProvidersCapability";
 import ADCSCapability from "./pages/capability/ADCSCapability";
 import ExchangeCapability from "./pages/capability/ExchangeCapability";
+import ADPasswordPolicies from "./pages/blog/ADPasswordPolicies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -70,6 +71,7 @@ const App = () => (
             <Route path="/resources" element={<Resources />} />
             <Route path="/history" element={<History />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/ad-password-policies-security-theater" element={<ADPasswordPolicies />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/security" element={<Security />} />
             <Route path="/terms" element={<Terms />} />
