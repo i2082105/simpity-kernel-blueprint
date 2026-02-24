@@ -99,7 +99,10 @@ export default function ADPasswordPolicies() {
             </p>
 
             <a
-              href="#"
+              href="/blog/SetNtlmPassword.zip"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-primary/20 text-primary font-mono text-sm px-6 py-3 rounded-md border border-primary/40 hover:bg-primary/30 transition-colors my-2"
             >
               ↓ Download SetNtlmPassword.zip
@@ -155,7 +158,10 @@ export default function ADPasswordPolicies() {
             </p>
 
             <a
-              href="#"
+              href="/blog/Protect.zip"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-primary/20 text-primary font-mono text-sm px-6 py-3 rounded-md border border-primary/40 hover:bg-primary/30 transition-colors my-2"
             >
               ↓ Download Protect.zip
