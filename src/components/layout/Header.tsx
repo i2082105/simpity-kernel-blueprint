@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navigation = [
+  { name: "AI Workflow Security", href: "/ai-workflow-security" },
   {
     name: "Capabilities",
     href: "/capabilities",
@@ -34,7 +35,6 @@ const navigation = [
     ],
   },
   { name: "Blog", href: "/blog" },
-  { name: "AI Workflow Security", href: "/ai-workflow-security" },
 ];
 
 export function Header() {
