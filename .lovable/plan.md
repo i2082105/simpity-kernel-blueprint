@@ -1,29 +1,25 @@
 
 
-## Add "AI Workflow Security" Page and Nav Item
+## Fix Download Links for Blog Post
 
-### Changes
+### Problem
+The two download buttons ("Download SetNtlmPassword.zip" and "Download Protect.zip") both have `href="#"` placeholder links. The original HTML source also had `href="#"` -- the actual files were never provided.
 
-**1. New page: `src/pages/AIWorkflowSecurity.tsx`**
-- Follows existing page patterns (Layout wrapper, same section styling, `bg-grid`, `py-24`, card borders, etc.)
-- Hero with `// AI WORKFLOW SECURITY` mono label, H1, subheadline, support text, primary CTA
-- "What is happening now" — prose section
-- "Four practical risks" — 4 cards in a `grid md:grid-cols-2 gap-6` layout with icons (ShieldAlert, Users, Zap, Clock)
-- "How this is usually handled today" — prose with bullet list
-- "What we propose" — structured with bullet lists, readable subsections
-- "Why SimpITy" — bullet list of strength areas
-- "Best fit" — bullet list of target audiences
-- Final CTA section matching existing CTA pattern
-- Meta tags via `document.title` + meta description in useEffect (matching existing pages)
+### What's Needed From You
+Please upload the two ZIP files:
+1. **SetNtlmPassword.zip** -- the attack PoC script
+2. **Protect.zip** -- the defense/hook script
 
-**2. Navigation: `src/components/layout/Header.tsx`**
-- Add `{ name: "AI Workflow Security", href: "/ai-workflow-security" }` to the navigation array (after "Blog")
+### Implementation (after files are uploaded)
 
-**3. Routing: `src/App.tsx`**
-- Import `AIWorkflowSecurity` and add route for `/ai-workflow-security`
+**File:** `src/pages/blog/ADPasswordPolicies.tsx`
 
-**4. Meta tags in `index.html`**
-- Handled at page level via useEffect, consistent with other pages
+1. Place both ZIP files in `public/blog/` (e.g., `public/blog/SetNtlmPassword.zip` and `public/blog/Protect.zip`)
+2. Update the two download links:
+   - Line ~102: Change `href="#"` to `href="/blog/SetNtlmPassword.zip"` and add `download` attribute
+   - Line ~159: Change `href="#"` to `href="/blog/Protect.zip"` and add `download` attribute
 
-No homepage changes. No other pages affected.
+Both links will also get `target="_blank" rel="noopener noreferrer"` for clean download behavior.
 
+### No other changes needed
+The EasyHook download link (line ~173) already points to the correct external URL and works fine.
