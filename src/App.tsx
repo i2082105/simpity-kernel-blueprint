@@ -73,6 +73,7 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/ad-password-policies-security-theater" element={<ADPasswordPolicies />} />
+            <Route path="/ai-workflow-security" element={<AIWorkflowSecurity />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/security" element={<Security />} />
             <Route path="/terms" element={<Terms />} />

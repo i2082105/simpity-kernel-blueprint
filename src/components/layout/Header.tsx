@@ -34,6 +34,7 @@ const navigation = [
     ],
   },
   { name: "Blog", href: "/blog" },
+  { name: "AI Workflow Security", href: "/ai-workflow-security" },
 ];
 
 export function Header() {
