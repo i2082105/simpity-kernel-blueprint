@@ -31,6 +31,7 @@ import CredentialProvidersCapability from "./pages/capability/CredentialProvider
 import ADCSCapability from "./pages/capability/ADCSCapability";
 import ExchangeCapability from "./pages/capability/ExchangeCapability";
 import ADPasswordPolicies from "./pages/blog/ADPasswordPolicies";
+import AIWorkflowSecurity from "./pages/AIWorkflowSecurity";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
