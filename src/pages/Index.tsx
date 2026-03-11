@@ -14,6 +14,7 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
+      <AISecurityBanner />
       <TrustedBySection />
       <CapabilitiesOverview />
       <ComplianceBadges />
