@@ -5,7 +5,6 @@ import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 const blogPosts = [
   {
     id: 0,
-    slug: "ad-password-policies-security-theater",
     title: "Your AD Password Policies Are Security Theater",
     excerpt: "Here's proof with scripts you can test today. Plus a defense that actually works.",
     author: "Alexei Belous",
