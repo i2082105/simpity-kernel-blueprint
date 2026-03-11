@@ -6,7 +6,7 @@ export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout | null = null;
+    let timer: ReturnType<typeof setTimeout> | null = null;
     
     const consentData = localStorage.getItem("cookieConsent");
     if (!consentData) {
