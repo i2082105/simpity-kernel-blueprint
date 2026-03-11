@@ -1,25 +1,19 @@
 
 
-## Fix Download Links for Blog Post
+## Rewrite AISecurityBanner — Problem-First with Named Tools
 
-### Problem
-The two download buttons ("Download SetNtlmPassword.zip" and "Download Protect.zip") both have `href="#"` placeholder links. The original HTML source also had `href="#"` -- the actual files were never provided.
+**File:** `src/components/home/AISecurityBanner.tsx`, lines 34-48.
 
-### What's Needed From You
-Please upload the two ZIP files:
-1. **SetNtlmPassword.zip** -- the attack PoC script
-2. **Protect.zip** -- the defense/hook script
+### New copy
 
-### Implementation (after files are uploaded)
+**Headline:**
+"Your Team Already Pasted Sensitive Data Into ChatGPT. Now What?"
 
-**File:** `src/pages/blog/ADPasswordPolicies.tsx`
+**Paragraph 1 — zoo of AI tools + real incidents:**
+"Someone uploaded a board deck into Copilot. An engineer pasted production credentials into Claude. A support team connected an AI assistant to the internal knowledge base — with admin-level access. Meanwhile, employees across departments are installing a zoo of AI tools on their own: ChatGPT, Copilot, Claude, Cursor, Claw — each with its own data handling, each outside your security perimeter."
 
-1. Place both ZIP files in `public/blog/` (e.g., `public/blog/SetNtlmPassword.zip` and `public/blog/Protect.zip`)
-2. Update the two download links:
-   - Line ~102: Change `href="#"` to `href="/blog/SetNtlmPassword.zip"` and add `download` attribute
-   - Line ~159: Change `href="#"` to `href="/blog/Protect.zip"` and add `download` attribute
+**Paragraph 2 — regulatory pressure + what we do:**
+"The EU AI Act (Articles 9, 10, 15, 26) now requires documented risk management, data governance, and cybersecurity controls for AI workflows. Your cyber insurer is asking the same questions. We take one risky workflow — the one keeping you up at night — and engineer the controls that make it safe, auditable, and insurable."
 
-Both links will also get `target="_blank" rel="noopener noreferrer"` for clean download behavior.
+No changes to cards or layout.
 
-### No other changes needed
-The EasyHook download link (line ~173) already points to the correct external URL and works fine.
