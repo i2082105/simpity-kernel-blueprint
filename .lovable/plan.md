@@ -1,36 +1,25 @@
 
 
-## Add Premium "AI Workflow Security" Section to Homepage (After Hero)
+## Fix Download Links for Blog Post
 
-### Placement
-Right after `<HeroSection />` and before `<TrustedBySection />` — top billing as the premium offer.
+### Problem
+The two download buttons ("Download SetNtlmPassword.zip" and "Download Protect.zip") both have `href="#"` placeholder links. The original HTML source also had `href="#"` -- the actual files were never provided.
 
-### Messaging Angle
-Shift from generic "AI risk" to **safe, compliant, insurable AI adoption** with EU AI Act specifics. Position SimpITy as the engineering partner that makes AI workflows auditable and regulation-ready.
+### What's Needed From You
+Please upload the two ZIP files:
+1. **SetNtlmPassword.zip** -- the attack PoC script
+2. **Protect.zip** -- the defense/hook script
 
-### New Component: `src/components/home/AISecurityBanner.tsx`
+### Implementation (after files are uploaded)
 
-**Layout:** Full-width section with `bg-gradient-to-r from-primary/5 via-background to-primary/5`, border top/bottom. Two-column grid on desktop, stacked on mobile.
+**File:** `src/pages/blog/ADPasswordPolicies.tsx`
 
-**Left column:**
-- Mono label: `// PREMIUM SERVICE`
-- Headline: **"Make Your AI Workflows Safe, Compliant, and Insurable"**
-- Supporting text: "The EU AI Act is now in force. Articles 9, 10, and 15 require risk management systems, data governance, and technical documentation for high-risk AI. Article 26 places direct obligations on deployers. Your enterprise AI workflows — from chat tools to automated decisions — need engineering-level controls, not just policies."
-- Second paragraph: "We review one risky AI workflow end-to-end: data paths, identity boundaries, permission models, and control gaps — so your AI adoption is auditable, insurable, and EU AI Act ready."
-- CTA: "Review a Risky Workflow →" linking to `/ai-workflow-security`
+1. Place both ZIP files in `public/blog/` (e.g., `public/blog/SetNtlmPassword.zip` and `public/blog/Protect.zip`)
+2. Update the two download links:
+   - Line ~102: Change `href="#"` to `href="/blog/SetNtlmPassword.zip"` and add `download` attribute
+   - Line ~159: Change `href="#"` to `href="/blog/Protect.zip"` and add `download` attribute
 
-**Right column:** 3 compact cards stacked vertically:
-1. **Shield icon** — "EU AI Act Compliant" / "Articles 9, 10, 15, 26 — risk management, data governance, monitoring obligations"
-2. **FileCheck icon** — "Audit-Ready Controls" / "Documented data paths, identity boundaries, and permission models"
-3. **Lock icon** — "Insurable by Design" / "Engineering controls that satisfy cyber insurance requirements for AI use"
+Both links will also get `target="_blank" rel="noopener noreferrer"` for clean download behavior.
 
-### EU AI Act References (specific clauses)
-- **Article 9** — Risk management system for high-risk AI
-- **Article 10** — Data and data governance requirements
-- **Article 15** — Accuracy, robustness, and cybersecurity
-- **Article 26** — Obligations of deployers of high-risk AI systems
-
-### Files Changed
-1. **Create** `src/components/home/AISecurityBanner.tsx`
-2. **Edit** `src/pages/Index.tsx` — insert `<AISecurityBanner />` between `<HeroSection />` and `<TrustedBySection />`
-
+### No other changes needed
+The EasyHook download link (line ~173) already points to the correct external URL and works fine.

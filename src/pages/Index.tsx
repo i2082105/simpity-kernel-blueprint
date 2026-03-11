@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
+import { AISecurityBanner } from "@/components/home/AISecurityBanner";
 import { TrustedBySection } from "@/components/home/TrustedBySection";
 import { CapabilitiesOverview } from "@/components/home/CapabilitiesOverview";
 import { ComplianceBadges } from "@/components/home/ComplianceBadges";
@@ -13,6 +14,7 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
+      <AISecurityBanner />
       <TrustedBySection />
       <CapabilitiesOverview />
       <ComplianceBadges />
