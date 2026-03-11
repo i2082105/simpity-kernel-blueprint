@@ -32,19 +32,24 @@ export function AISecurityBanner() {
           <div>
             <p className="text-sm font-mono text-primary mb-4">// PREMIUM SERVICE</p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Make Your AI Workflows Safe, Compliant, and Insurable
+              Your Team Already Pasted Sensitive Data Into ChatGPT. Now What?
             </h2>
             <p className="text-muted-foreground mb-4">
-              The EU AI Act is now in force. Articles&nbsp;9, 10, and 15 require risk
-              management systems, data governance, and technical documentation for
-              high-risk AI. Article&nbsp;26 places direct obligations on deployers.
-              Your enterprise AI workflows — from chat tools to automated
-              decisions — need engineering-level controls, not just policies.
+              Someone uploaded a board deck into Copilot. An engineer pasted
+              production credentials into Claude. A support team connected an AI
+              assistant to the internal knowledge base — with admin-level access.
+              Meanwhile, employees across departments are installing a zoo of AI
+              tools on their own: ChatGPT, Copilot, Claude, Cursor,
+              Claw — each with its own data handling, each outside your
+              security perimeter.
             </p>
             <p className="text-muted-foreground mb-8">
-              We review one risky AI workflow end-to-end: data paths, identity
-              boundaries, permission models, and control gaps — so your AI
-              adoption is auditable, insurable, and EU&nbsp;AI&nbsp;Act ready.
+              The EU&nbsp;AI&nbsp;Act (Articles&nbsp;9, 10, 15, 26) now requires
+              documented risk management, data governance, and cybersecurity
+              controls for AI workflows. Your cyber insurer is asking the same
+              questions. We take one risky workflow — the one keeping you up
+              at night — and engineer the controls that make it safe,
+              auditable, and insurable.
             </p>
             <Link to="/ai-workflow-security">
               <Button variant="hero" size="lg">
