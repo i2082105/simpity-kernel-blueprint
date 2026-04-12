@@ -6,6 +6,7 @@ const blogPosts = [
   {
     id: 0,
     title: "Your AD Password Policies Are Security Theater",
+    slug: "ad-password-policies",
     excerpt: "Here's proof with scripts you can test today. Plus a defense that actually works.",
     author: "Alexei Belous",
     date: "2026-02-19",
