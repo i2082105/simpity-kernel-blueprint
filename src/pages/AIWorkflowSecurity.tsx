@@ -275,6 +275,27 @@ export default function AIWorkflowSecurity() {
         </div>
       </section>
 
+      {/* Attack Hub bridge */}
+      <section className="py-20 bg-card/30 border-y border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl rounded-xl bg-background border border-border p-8">
+            <p className="text-sm font-mono text-primary mb-4">// AI AGENT ATTACK HUB</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Explore the attack model before the workflow review
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              The hub maps agent attack anatomy, OAuth abuse, prompt injection, unmanaged AI tools, recent signals, and a self-assessment for teams that need to understand where their AI exposure starts.
+            </p>
+            <Link to="/ai-agent-attack-hub">
+              <Button variant="hero-outline" size="lg">
+                Open AI Agent Attack Hub
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />

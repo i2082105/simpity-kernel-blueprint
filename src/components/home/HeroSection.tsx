@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Cpu, Lock } from "lucide-react";
-import heroImage from "@/assets/hero-security.webp";
+import { ArrowRight, Shield, Cpu, Lock, CheckCircle2 } from "lucide-react";
+
+const technicalProof = [
+  "Kernel callbacks and runtime enforcement",
+  "LSASS / authentication flow instrumentation",
+  "AD, OAuth, and non-human identity boundaries",
+  "Patch Tuesday resilience for undocumented APIs",
+  "Enterprise-scale behavior detection baselines",
+];
 
 export function HeroSection() {
   return (
@@ -57,18 +64,36 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column - Hero Image */}
+          {/* Right Column - Technical Proof */}
           <div className="relative animate-fade-in lg:block hidden">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-border/50">
-              <img 
-                src={heroImage} 
-                alt="Security engineer analyzing Windows system code on multiple monitors"
-                className="w-full h-auto object-cover"
-              />
-              {/* Subtle overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
+            <div className="relative rounded-2xl overflow-hidden border border-border bg-card/80 shadow-xl">
+              <div className="border-b border-border px-6 py-4">
+                <p className="text-xs font-mono text-primary mb-2">CONTROL BOUNDARIES</p>
+                <h2 className="text-2xl font-bold text-foreground">
+                  Built where vendor documentation stops
+                </h2>
+              </div>
+              <div className="p-6 space-y-4">
+                {technicalProof.map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">{item}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-3 border-t border-border">
+                {[
+                  ["500+", "DCs"],
+                  ["24-48h", "Patch response"],
+                  ["HVCI", "WDAC aware"],
+                ].map(([value, label]) => (
+                  <div key={label} className="p-4 border-r border-border last:border-r-0">
+                    <p className="text-lg font-bold text-foreground">{value}</p>
+                    <p className="text-xs text-muted-foreground">{label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            {/* Glow effect behind image */}
             <div className="absolute -inset-4 bg-primary/10 rounded-3xl blur-2xl -z-10" />
           </div>
         </div>
