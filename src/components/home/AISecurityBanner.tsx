@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, FileCheck, Lock } from "lucide-react";
+import { ArrowRight, Shield, FileCheck, Lock, Radar } from "lucide-react";
 
 const cards = [
   {
@@ -51,16 +51,44 @@ export function AISecurityBanner() {
               at night — and engineer the controls that make it safe,
               auditable, and insurable.
             </p>
-            <Link to="/ai-workflow-security">
-              <Button variant="hero" size="lg">
-                Review a Risky Workflow
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/ai-workflow-security">
+                <Button variant="hero" size="lg">
+                  Review a Risky Workflow
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link to="/ai-agent-attack-hub">
+                <Button variant="hero-outline" size="lg">
+                  Open Attack Hub
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Right */}
           <div className="space-y-4">
+            <Link
+              to="/ai-agent-attack-hub"
+              className="block p-5 rounded-xl bg-card border border-primary/30 hover:border-primary/60 transition-colors"
+            >
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                  <Radar className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs font-mono text-primary mb-1">NEW CONTENT HUB</p>
+                  <h3 className="font-semibold text-foreground mb-1">AI Agent Attack Hub</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Attack anatomy, OAuth abuse, prompt injection, recent signals, and a 10-question self-assessment for agentic AI exposure.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm text-primary">
+                    Explore the hub
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </div>
+            </Link>
             {cards.map((card) => (
               <div
                 key={card.title}
