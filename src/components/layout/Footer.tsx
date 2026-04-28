@@ -5,6 +5,8 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const navigation = [
+  { name: "AI Workflow Security", href: "/ai-workflow-security" },
+  { name: "AI Agent Attack Hub", href: "/ai-agent-attack-hub" },
   { name: "Capabilities", href: "/capabilities" },
   { name: "Technology", href: "/technology" },
   { name: "Case Studies", href: "/case-studies" },
