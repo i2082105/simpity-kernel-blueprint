@@ -81,18 +81,6 @@ export function HeroSection() {
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-3 border-t border-border">
-                {[
-                  ["500+", "DCs"],
-                  ["24-48h", "Patch response"],
-                  ["HVCI", "WDAC aware"],
-                ].map(([value, label]) => (
-                  <div key={label} className="p-4 border-r border-border last:border-r-0">
-                    <p className="text-lg font-bold text-foreground">{value}</p>
-                    <p className="text-xs text-muted-foreground">{label}</p>
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="absolute -inset-4 bg-primary/10 rounded-3xl blur-2xl -z-10" />
           </div>
