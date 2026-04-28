@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const navigation = [
   { name: "AI Workflow Security", href: "/ai-workflow-security" },
+  { name: "Attack Hub", href: "/ai-agent-attack-hub" },
   {
     name: "Capabilities",
     href: "/capabilities",
