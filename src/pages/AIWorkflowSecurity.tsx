@@ -278,15 +278,30 @@ export default function AIWorkflowSecurity() {
               ))}
             </ul>
 
-            <p className="text-sm font-semibold text-foreground mb-3">For that workflow, we help you:</p>
-            <ul className="space-y-2">
-              {hardenSteps.map((step) => (
-                <li key={step} className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                  {step}
-                </li>
-              ))}
-            </ul>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-3">For that workflow, we help you:</p>
+                <ul className="space-y-2">
+                  {hardenSteps.map((step) => (
+                    <li key={step} className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                      {step}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-6 rounded-xl bg-card border border-border">
+                <p className="text-sm font-semibold text-foreground mb-3">What you get:</p>
+                <ul className="space-y-2">
+                  {deliverables.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
