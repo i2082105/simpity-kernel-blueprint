@@ -6,6 +6,7 @@ const technicalProof = [
   "Kernel callbacks and runtime enforcement",
   "LSASS / authentication flow instrumentation",
   "AD, OAuth, and non-human identity boundaries",
+  "AI workflow control points and audit evidence",
   "Patch Tuesday resilience for undocumented APIs",
   "Enterprise-scale behavior detection baselines",
 ];
