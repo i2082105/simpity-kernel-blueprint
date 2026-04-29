@@ -50,6 +50,12 @@ export function Header() {
   const [mobileExpandedSection, setMobileExpandedSection] = useState<string | null>(null);
   const location = useLocation();
 
+  const isNavigationItemActive = (item: (typeof navigation)[number]) =>
+    location.pathname === item.href ||
+    location.pathname.startsWith(item.href + "/") ||
+    item.children?.some((child) => location.pathname === child.href) ||
+    false;
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#080C15] border-b border-border">
       <nav className="container mx-auto px-6 lg:px-8">
@@ -76,7 +82,7 @@ export function Header() {
                   to={item.href}
                   className={cn(
                     "px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1",
-                    location.pathname === item.href || location.pathname.startsWith(item.href + "/")
+                    isNavigationItemActive(item)
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   )}
@@ -132,7 +138,7 @@ export function Header() {
                     <button
                       className={cn(
                         "flex items-center justify-between w-full px-3 py-2 text-sm font-medium transition-colors",
-                        location.pathname === item.href || location.pathname.startsWith(item.href + "/")
+                        isNavigationItemActive(item)
                           ? "text-primary"
                           : "text-muted-foreground hover:text-foreground"
                       )}
@@ -166,13 +172,15 @@ export function Header() {
                   )}
                   {item.children && mobileExpandedSection === item.name && (
                     <div className="ml-4 flex flex-col gap-1">
-                      <Link
-                        to={item.href}
-                        className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        Overview
-                      </Link>
+                      {!item.children.some((child) => child.href === item.href) && (
+                        <Link
+                          to={item.href}
+                          className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Overview
+                        </Link>
+                      )}
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
