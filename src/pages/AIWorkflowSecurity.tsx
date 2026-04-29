@@ -117,18 +117,52 @@ export default function AIWorkflowSecurity() {
             <p className="text-muted-foreground mb-10">
               We focus on the engineering side of the problem: identity, runtime behavior, sensitive data paths, permissions, and control points inside real enterprise systems.
             </p>
-            <Link to="/contact">
-              <Button variant="hero" size="lg">
-                Review a risky workflow
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/contact">
+                <Button variant="hero" size="lg">
+                  Start AI Workflow Security Review
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link to="/ai-agent-attack-hub">
+                <Button variant="hero-outline" size="lg">
+                  Explore Attack Hub
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Buyer entry points */}
+      <section className="py-24 bg-card/30 border-y border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm font-mono text-primary mb-4">// THREE ENTRY POINTS</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              One AI workflow can create detection, regulatory, and identity exposure
+            </h2>
+            <p className="text-muted-foreground">
+              The review gives different stakeholders a practical way into the same problem: how an AI-enabled workflow uses data, permissions, tools, and control boundaries.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {buyerPillars.map((pillar) => (
+              <div key={pillar.title} className="p-6 rounded-xl bg-background border border-border hover:border-primary/30 transition-colors">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
+                  <pillar.icon className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-xs font-mono text-primary mb-2">{pillar.audience}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{pillar.title}</h3>
+                <p className="text-sm text-muted-foreground">{pillar.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* What is happening now */}
-      <section className="py-24 bg-card/30 border-y border-border">
+      <section className="py-24">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-bold text-foreground mb-6">
