@@ -360,10 +360,10 @@ export default function AIWorkflowSecurity() {
           <div className="max-w-4xl rounded-xl bg-background border border-border p-8">
             <p className="text-sm font-mono text-primary mb-4">// AI AGENT ATTACK HUB</p>
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Explore the attack model before the workflow review
+              Understand the attack model, then harden one real workflow
             </h2>
             <p className="text-muted-foreground mb-6">
-              The hub maps agent attack anatomy, OAuth abuse, prompt injection, unmanaged AI tools, recent signals, and a self-assessment for teams that need to understand where their AI exposure starts.
+              Use the Attack Hub to understand prompt injection, OAuth abuse, unmanaged AI tools, and agent attack anatomy. Use the Security Review to turn that model into control gaps, remediation work, and audit-ready evidence for a real enterprise workflow.
             </p>
             <Link to="/ai-agent-attack-hub">
               <Button variant="hero-outline" size="lg">
