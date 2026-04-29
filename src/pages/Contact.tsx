@@ -17,6 +17,11 @@ export default function Contact() {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [captchaTheme, setCaptchaTheme] = useState<"light" | "dark">("light");
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  const captchaAllowedHosts = ["simpity.eu", "www.simpity.eu", "localhost"];
+  const showCaptcha = Boolean(
+    recaptchaSiteKey && typeof window !== "undefined" && captchaAllowedHosts.includes(window.location.hostname),
+  );
 
   useEffect(() => {
     // Determine CAPTCHA theme based on current theme
@@ -30,9 +35,8 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    // Check if CAPTCHA is completed (only if reCAPTCHA is configured)
-    const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
-    if (recaptchaSiteKey && !captchaToken) {
+    // Check if CAPTCHA is completed only on domains registered for the key.
+    if (showCaptcha && !captchaToken) {
       toast({
         title: "Please complete the CAPTCHA",
         description: "Please verify that you're not a robot before submitting.",
@@ -185,27 +189,21 @@ export default function Contact() {
                     required
                   />
                 </div>
-                {import.meta.env.VITE_RECAPTCHA_SITE_KEY ? (
+                {showCaptcha && (
                   <div className="flex justify-center">
                     <ReCAPTCHA
                       ref={recaptchaRef}
-                      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                      sitekey={recaptchaSiteKey}
                       onChange={handleCaptchaChange}
                       theme={captchaTheme}
                     />
-                  </div>
-                ) : (
-                  <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                    <p className="text-sm text-muted-foreground text-center">
-                      
-                    </p>
                   </div>
                 )}
                 <Button 
                   type="submit" 
                   variant="hero" 
                   className="w-full" 
-                  disabled={isSubmitting || (import.meta.env.VITE_RECAPTCHA_SITE_KEY && !captchaToken)}
+                  disabled={isSubmitting || (showCaptcha && !captchaToken)}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                   <ArrowRight className="w-4 h-4" />
