@@ -1,12 +1,18 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "AI Workflow Security", href: "/ai-workflow-security" },
-  { name: "Attack Hub", href: "/ai-agent-attack-hub" },
+  {
+    name: "AI Security",
+    href: "/ai-workflow-security",
+    children: [
+      { name: "AI Workflow Security", href: "/ai-workflow-security" },
+      { name: "AI Agent Attack Hub", href: "/ai-agent-attack-hub" },
+    ],
+  },
   {
     name: "Capabilities",
     href: "/capabilities",

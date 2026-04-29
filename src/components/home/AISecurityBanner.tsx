@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, FileCheck, Lock, Radar } from "lucide-react";
+import { ArrowRight, FileCheck, Fingerprint, Radar } from "lucide-react";
 
 const cards = [
   {
-    icon: Shield,
-    title: "EU AI Act Compliant",
+    icon: Radar,
+    title: "Detection Modernization",
     description:
-      "Articles 9, 10, 15, 26 — risk management, data governance, cybersecurity, and deployer obligations covered.",
+      "Extend UEBA and SOC baselines for agent behavior, computer-use loops, prompt-driven actions, and anomalous tool execution.",
   },
   {
     icon: FileCheck,
-    title: "Audit-Ready Controls",
+    title: "Regulatory Resilience",
     description:
-      "Documented data paths, identity boundaries, and permission models ready for regulators and auditors.",
+      "Map AI Act Article 26, NIS2 Article 21, DORA ICT risk, and GDPR exposure into evidence-backed controls.",
   },
   {
-    icon: Lock,
-    title: "Insurable by Design",
+    icon: Fingerprint,
+    title: "Identity Posture",
     description:
-      "Engineering controls that satisfy cyber insurance requirements for enterprise AI use.",
+      "Inventory non-human identities, govern OAuth scopes, and reduce over-permissioned agents before they become lateral paths.",
   },
 ];
 
@@ -40,7 +40,7 @@ export function AISecurityBanner() {
               assistant to the internal knowledge base — with admin-level access.
               Meanwhile, employees across departments are installing a zoo of AI
               tools on their own: ChatGPT, Copilot, Claude, Cursor,
-              Claw — each with its own data handling, each outside your
+              Claude Code — each with its own data handling, each outside your
               security perimeter.
             </p>
             <p className="text-muted-foreground mb-8">
@@ -54,7 +54,7 @@ export function AISecurityBanner() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link to="/ai-workflow-security">
                 <Button variant="hero" size="lg">
-                  Review a Risky Workflow
+                  Start AI Workflow Security Review
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
@@ -77,10 +77,10 @@ export function AISecurityBanner() {
                   <Radar className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs font-mono text-primary mb-1">NEW CONTENT HUB</p>
+                  <p className="text-xs font-mono text-primary mb-1">THREAT MODEL LAYER</p>
                   <h3 className="font-semibold text-foreground mb-1">AI Agent Attack Hub</h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Attack anatomy, OAuth abuse, prompt injection, recent signals, and a 10-question self-assessment for agentic AI exposure.
+                    Use the hub to understand the attack model; use the security review to harden one real AI workflow.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm text-primary">
                     Explore the hub

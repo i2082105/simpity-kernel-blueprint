@@ -49,10 +49,10 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                Discuss Your Security Engineering Challenge
+                Discuss a Security Engineering or AI Workflow Challenge
               </h3>
               <p className="text-muted-foreground text-sm">
-                Deep technical expertise for complex Windows security requirements.
+                Deep technical expertise for complex Windows security and AI workflow control requirements.
               </p>
             </div>
             <Button asChild variant="default" size="lg" className="group">

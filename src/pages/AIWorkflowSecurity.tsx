@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShieldAlert, Users, Zap, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ShieldAlert, Users, Zap, Clock, CheckCircle2, Map, FileCheck, Fingerprint } from "lucide-react";
 
 const risks = [
   {
@@ -40,6 +40,36 @@ const hardenSteps = [
   "Identify the real control gaps.",
   "Define concrete hardening steps.",
   "Turn the result into a focused PoC or technical remediation effort.",
+];
+
+const deliverables = [
+  "AI workflow risk map",
+  "Sensitive data path review",
+  "OAuth / NHI exposure map",
+  "Control gap list and remediation backlog",
+  "Computer-use loop abuse scenarios",
+  "Audit-ready evidence pack",
+];
+
+const buyerPillars = [
+  {
+    icon: Map,
+    title: "Detection Modernization",
+    audience: "For CISO and SOC teams",
+    text: "Extend UEBA baselines and detection logic for agent behavior, prompt-driven actions, tool execution, and computer-use loops.",
+  },
+  {
+    icon: FileCheck,
+    title: "Regulatory Resilience",
+    audience: "For compliance and risk owners",
+    text: "Translate AI Act Article 26, NIS2 Article 21, DORA ICT risk, and GDPR data exposure into concrete technical evidence.",
+  },
+  {
+    icon: Fingerprint,
+    title: "Identity Posture",
+    audience: "For IAM and platform leads",
+    text: "Review OAuth scopes, non-human identities, agent permissions, and over-privileged access paths around AI workflows.",
+  },
 ];
 
 const whyStrengths = [
@@ -87,18 +117,52 @@ export default function AIWorkflowSecurity() {
             <p className="text-muted-foreground mb-10">
               We focus on the engineering side of the problem: identity, runtime behavior, sensitive data paths, permissions, and control points inside real enterprise systems.
             </p>
-            <Link to="/contact">
-              <Button variant="hero" size="lg">
-                Review a risky workflow
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/contact">
+                <Button variant="hero" size="lg">
+                  Start AI Workflow Security Review
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link to="/ai-agent-attack-hub">
+                <Button variant="hero-outline" size="lg">
+                  Explore Attack Hub
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Buyer entry points */}
+      <section className="py-24 bg-card/30 border-y border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm font-mono text-primary mb-4">// THREE ENTRY POINTS</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              One AI workflow can create detection, regulatory, and identity exposure
+            </h2>
+            <p className="text-muted-foreground">
+              The review gives different stakeholders a practical way into the same problem: how an AI-enabled workflow uses data, permissions, tools, and control boundaries.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {buyerPillars.map((pillar) => (
+              <div key={pillar.title} className="p-6 rounded-xl bg-background border border-border hover:border-primary/30 transition-colors">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
+                  <pillar.icon className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-xs font-mono text-primary mb-2">{pillar.audience}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{pillar.title}</h3>
+                <p className="text-sm text-muted-foreground">{pillar.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* What is happening now */}
-      <section className="py-24 bg-card/30 border-y border-border">
+      <section className="py-24">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-bold text-foreground mb-6">
@@ -214,15 +278,30 @@ export default function AIWorkflowSecurity() {
               ))}
             </ul>
 
-            <p className="text-sm font-semibold text-foreground mb-3">For that workflow, we help you:</p>
-            <ul className="space-y-2">
-              {hardenSteps.map((step) => (
-                <li key={step} className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                  {step}
-                </li>
-              ))}
-            </ul>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-3">For that workflow, we help you:</p>
+                <ul className="space-y-2">
+                  {hardenSteps.map((step) => (
+                    <li key={step} className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                      {step}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-6 rounded-xl bg-card border border-border">
+                <p className="text-sm font-semibold text-foreground mb-3">What you get:</p>
+                <ul className="space-y-2">
+                  {deliverables.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -281,10 +360,10 @@ export default function AIWorkflowSecurity() {
           <div className="max-w-4xl rounded-xl bg-background border border-border p-8">
             <p className="text-sm font-mono text-primary mb-4">// AI AGENT ATTACK HUB</p>
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Explore the attack model before the workflow review
+              Understand the attack model, then harden one real workflow
             </h2>
             <p className="text-muted-foreground mb-6">
-              The hub maps agent attack anatomy, OAuth abuse, prompt injection, unmanaged AI tools, recent signals, and a self-assessment for teams that need to understand where their AI exposure starts.
+              Use the Attack Hub to understand prompt injection, OAuth abuse, unmanaged AI tools, and agent attack anatomy. Use the Security Review to turn that model into control gaps, remediation work, and audit-ready evidence for a real enterprise workflow.
             </p>
             <Link to="/ai-agent-attack-hub">
               <Button variant="hero-outline" size="lg">
