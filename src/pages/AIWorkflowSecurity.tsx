@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShieldAlert, Users, Zap, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ShieldAlert, Users, Zap, Clock, CheckCircle2, Map, FileCheck, Fingerprint } from "lucide-react";
 
 const risks = [
   {
@@ -40,6 +40,36 @@ const hardenSteps = [
   "Identify the real control gaps.",
   "Define concrete hardening steps.",
   "Turn the result into a focused PoC or technical remediation effort.",
+];
+
+const deliverables = [
+  "AI workflow risk map",
+  "Sensitive data path review",
+  "OAuth / NHI exposure map",
+  "Control gap list and remediation backlog",
+  "Computer-use loop abuse scenarios",
+  "Audit-ready evidence pack",
+];
+
+const buyerPillars = [
+  {
+    icon: Map,
+    title: "Detection Modernization",
+    audience: "For CISO and SOC teams",
+    text: "Extend UEBA baselines and detection logic for agent behavior, prompt-driven actions, tool execution, and computer-use loops.",
+  },
+  {
+    icon: FileCheck,
+    title: "Regulatory Resilience",
+    audience: "For compliance and risk owners",
+    text: "Translate AI Act Article 26, NIS2 Article 21, DORA ICT risk, and GDPR data exposure into concrete technical evidence.",
+  },
+  {
+    icon: Fingerprint,
+    title: "Identity Posture",
+    audience: "For IAM and platform leads",
+    text: "Review OAuth scopes, non-human identities, agent permissions, and over-privileged access paths around AI workflows.",
+  },
 ];
 
 const whyStrengths = [
