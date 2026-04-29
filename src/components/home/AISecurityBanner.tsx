@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileCheck, Fingerprint, Radar, Shield } from "lucide-react";
+import { ArrowRight, FileCheck, Fingerprint, Radar } from "lucide-react";
 
 const cards = [
   {
