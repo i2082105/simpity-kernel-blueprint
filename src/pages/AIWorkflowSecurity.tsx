@@ -295,15 +295,15 @@ export default function AIWorkflowSecurity() {
       {/* What we propose */}
       <section className="py-24">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-6">
-              What we propose
+              AI Workflow Security Review
             </h2>
             <p className="text-muted-foreground mb-4">
               We do not sell a vague AI transformation project.
             </p>
             <p className="text-muted-foreground mb-6">
-              We help you take one risky AI workflow and review it as an engineering problem.
+              We help you take one risky AI workflow and review it as a fixed-scope security engineering engagement.
             </p>
             <p className="text-sm font-semibold text-foreground mb-3">That can include:</p>
             <ul className="space-y-2 mb-8">
@@ -314,37 +314,74 @@ export default function AIWorkflowSecurity() {
                 </li>
               ))}
             </ul>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <p className="text-sm font-semibold text-foreground mb-3">For that workflow, we help you:</p>
-                <ul className="space-y-2">
-                  {hardenSteps.map((step) => (
-                    <li key={step} className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                      {step}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="p-6 rounded-xl bg-card border border-border">
-                <p className="text-sm font-semibold text-foreground mb-3">What you get:</p>
-                <ul className="space-y-2">
-                  {deliverables.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {reviewPhases.map((phase) => (
+              <article key={phase.title} className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
+                  <phase.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{phase.title}</h3>
+                <p className="text-sm text-muted-foreground">{phase.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-8">
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-3">For that workflow, we help you:</p>
+              <ul className="space-y-2">
+                {hardenSteps.map((step) => (
+                  <li key={step} className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    {step}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="p-6 rounded-xl bg-card border border-border">
+              <p className="text-sm font-semibold text-foreground mb-3">What you get:</p>
+              <ul className="grid md:grid-cols-2 gap-3">
+                {deliverables.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Regulatory framing */}
+      <section className="py-24 bg-card/30 border-y border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12">
+            <div>
+              <p className="text-sm font-mono text-primary mb-4">// EU CONTROL CONTEXT</p>
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Built for Belgian and EU security accountability
+              </h2>
+              <p className="text-muted-foreground">
+                The review does not turn regulation into a checklist theatre. It maps regulatory pressure to the actual AI workflow: data movement, identities, controls, logging, ownership, and evidence.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {regulatoryFrames.map((frame) => (
+                <article key={frame.label} className="p-5 rounded-xl bg-background border border-border">
+                  <h3 className="font-semibold text-foreground mb-2">{frame.label}</h3>
+                  <p className="text-sm text-muted-foreground">{frame.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Why SimpITy */}
-      <section className="py-24 bg-card/30 border-y border-border">
+      <section className="py-24">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-bold text-foreground mb-6">
