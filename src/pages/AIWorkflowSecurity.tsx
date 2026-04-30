@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShieldAlert, Users, Zap, Clock, CheckCircle2, Map, FileCheck, Fingerprint } from "lucide-react";
+import { ArrowRight, ShieldAlert, Users, Zap, Clock, CheckCircle2, Map, FileCheck, Fingerprint, ClipboardCheck, Route, LockKeyhole } from "lucide-react";
 
 const risks = [
   {
@@ -43,12 +43,49 @@ const hardenSteps = [
 ];
 
 const deliverables = [
-  "AI workflow risk map",
-  "Sensitive data path review",
-  "OAuth / NHI exposure map",
-  "Control gap list and remediation backlog",
-  "Computer-use loop abuse scenarios",
-  "Audit-ready evidence pack",
+  "AI workflow risk map with owners, systems, data classes, and action paths.",
+  "Sensitive data path review covering prompts, uploads, retrieval, exports, and downstream storage.",
+  "OAuth / NHI exposure map for connected apps, service accounts, scopes, and delegated access.",
+  "Control gap list and remediation backlog prioritized for security, identity, and platform teams.",
+  "Computer-use loop abuse scenarios for browser, SaaS, and internal application workflows.",
+  "Audit-ready evidence pack that shows what was reviewed, what risk remains, and what controls changed.",
+];
+
+const reviewPhases = [
+  {
+    icon: Route,
+    title: "Trace the workflow",
+    text: "Document where the AI tool receives data, which systems it can reach, which identities it uses, and what actions it can trigger.",
+  },
+  {
+    icon: LockKeyhole,
+    title: "Test the control boundaries",
+    text: "Review identity delegation, OAuth scopes, file access, prompt uploads, connector permissions, logging, and abuse scenarios.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Produce the hardening plan",
+    text: "Translate findings into a focused backlog, audit evidence, ownership, and technical control points the organization can implement.",
+  },
+];
+
+const regulatoryFrames = [
+  {
+    label: "EU AI Act Article 26",
+    text: "Evidence for deployer oversight, appropriate use, monitoring, logging awareness, and human control around high-impact AI workflows.",
+  },
+  {
+    label: "NIS2 Article 21",
+    text: "Technical and organizational measures for access control, incident handling, supply-chain exposure, and secure systems operations.",
+  },
+  {
+    label: "DORA ICT risk",
+    text: "Operational resilience view of third-party tooling, ICT dependencies, monitoring, continuity, and risk ownership.",
+  },
+  {
+    label: "GDPR data exposure",
+    text: "Review of personal data flows through prompts, documents, retrieval, outputs, retention, and unmanaged AI workspaces.",
+  },
 ];
 
 const buyerPillars = [
