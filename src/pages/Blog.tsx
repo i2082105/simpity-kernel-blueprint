@@ -4,6 +4,16 @@ import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 
 const blogPosts = [
   {
+    id: -1,
+    title: "Why Running Services Under Domain Admin Accounts Is a Ticking Time Bomb",
+    slug: "domain-admin-token-theft",
+    excerpt: "From local admin to Domain Admin in under 10 seconds — using only built-in Windows APIs. A live token theft demo and how to block it.",
+    author: "Alexei Belous",
+    date: "2026-05-12",
+    readTime: "10 min read",
+    category: "AD Security",
+  },
+  {
     id: 0,
     title: "Your AD Password Policies Are Security Theater",
     slug: "ad-password-policies",

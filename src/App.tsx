@@ -31,6 +31,7 @@ import CredentialProvidersCapability from "./pages/capability/CredentialProvider
 import ADCSCapability from "./pages/capability/ADCSCapability";
 import ExchangeCapability from "./pages/capability/ExchangeCapability";
 import ADPasswordPolicies from "./pages/blog/ADPasswordPolicies";
+import DomainAdminTokenTheft from "./pages/blog/DomainAdminTokenTheft";
 import AIWorkflowSecurity from "./pages/AIWorkflowSecurity";
 import AIAgentAttackHub from "./pages/AIAgentAttackHub";
 import NotFound from "./pages/NotFound";
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/ad-password-policies-security-theater" element={<ADPasswordPolicies />} />
+            <Route path="/blog/domain-admin-token-theft" element={<DomainAdminTokenTheft />} />
             <Route path="/ai-workflow-security" element={<AIWorkflowSecurity />} />
             <Route path="/ai-agent-attack-hub" element={<AIAgentAttackHub />} />
             <Route path="/privacy" element={<Privacy />} />
