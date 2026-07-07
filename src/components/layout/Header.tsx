@@ -11,6 +11,7 @@ const navigation = [
     children: [
       { name: "AI Workflow Security", href: "/ai-workflow-security" },
       { name: "AI Agent Attack Hub", href: "/ai-agent-attack-hub" },
+      { name: "Live Webinar", href: "/webinar/soc-already-lost" },
     ],
   },
   {
