@@ -102,11 +102,12 @@ export function RegistrationForm() {
           style={{ borderColor: "#01696F", background: "rgba(1,105,111,0.1)" }}
         >
           <div className="font-display font-bold text-2xl md:text-3xl mb-3" style={{ color: "#EDEDEC" }}>
-            You're in.
+            {alreadyRegistered ? "Already on the list." : "You're in."}
           </div>
           <p className="text-base md:text-lg" style={{ color: "#EDEDEC" }}>
-            Check your inbox. The attack we'll break is already running in someone's network right
-            now.
+            {alreadyRegistered
+              ? "This email is already registered. We'll send the link before the session."
+              : "We've got your seat. The attack we'll break is already running in someone's network right now."}
           </p>
         </div>
       ) : (
