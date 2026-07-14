@@ -134,6 +134,11 @@ export function RegistrationForm() {
             >
               {busy ? "SECURING…" : "SECURE MY SEAT →"}
             </button>
+            {submitError && (
+              <p className="mt-3 text-sm font-mono" style={{ color: "#E5484D" }}>
+                {submitError}
+              </p>
+            )}
             <p className="mt-4 text-xs md:text-sm" style={{ color: "#7A7974" }}>
               No sales call unless you ask for one. We respect your inbox more than your SIEM
               respects your AD.
