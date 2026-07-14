@@ -35,6 +35,7 @@ import DomainAdminTokenTheft from "./pages/blog/DomainAdminTokenTheft";
 import AIWorkflowSecurity from "./pages/AIWorkflowSecurity";
 import AIAgentAttackHub from "./pages/AIAgentAttackHub";
 import SocAlreadyLost from "./pages/webinar/SocAlreadyLost";
+import WebinarRegistrations from "./pages/webinar/Registrations";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
