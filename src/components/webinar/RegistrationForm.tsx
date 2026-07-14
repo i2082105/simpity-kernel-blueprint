@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   email: z.string().trim().email({ message: "That's not an email." }).max(255),
@@ -13,8 +14,10 @@ type Errors = Partial<Record<keyof z.infer<typeof schema>, string>>;
 
 export function RegistrationForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [alreadyRegistered, setAlreadyRegistered] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [busy, setBusy] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,17 +45,35 @@ export function RegistrationForm() {
       return;
     }
     setErrors({});
+    setSubmitError(null);
     setBusy(true);
     try {
-      // TODO: wire to Instantly / Google Sheets / Cloud edge function
-      await fetch("/api/webinar-register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
-      }).catch(() => undefined);
+      const { data: res, error } = await supabase.functions.invoke("webinar-register", {
+        body: { ...parsed.data, webinar_slug: "soc-already-lost" },
+      });
+      if (error) {
+        setSubmitError("Something broke on our side. Try again in a moment.");
+        return;
+      }
+      if (res && typeof res === "object" && "error" in res) {
+        const code = (res as { error: string }).error;
+        if (code === "rate_limited") {
+          setSubmitError("Too many attempts. Wait an hour, then try again.");
+        } else if (code === "validation") {
+          setSubmitError("Check the fields and try again.");
+        } else {
+          setSubmitError("Something broke on our side. Try again in a moment.");
+        }
+        return;
+      }
+      if (res && (res as { already_registered?: boolean }).already_registered) {
+        setAlreadyRegistered(true);
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Network error. Check your connection and try again.");
     } finally {
       setBusy(false);
-      setSubmitted(true);
     }
   };
 
@@ -81,11 +102,12 @@ export function RegistrationForm() {
           style={{ borderColor: "#01696F", background: "rgba(1,105,111,0.1)" }}
         >
           <div className="font-display font-bold text-2xl md:text-3xl mb-3" style={{ color: "#EDEDEC" }}>
-            You're in.
+            {alreadyRegistered ? "Already on the list." : "You're in."}
           </div>
           <p className="text-base md:text-lg" style={{ color: "#EDEDEC" }}>
-            Check your inbox. The attack we'll break is already running in someone's network right
-            now.
+            {alreadyRegistered
+              ? "This email is already registered. We'll send the link before the session."
+              : "We've got your seat. The attack we'll break is already running in someone's network right now."}
           </p>
         </div>
       ) : (
@@ -112,6 +134,11 @@ export function RegistrationForm() {
             >
               {busy ? "SECURING…" : "SECURE MY SEAT →"}
             </button>
+            {submitError && (
+              <p className="mt-3 text-sm font-mono" style={{ color: "#E5484D" }}>
+                {submitError}
+              </p>
+            )}
             <p className="mt-4 text-xs md:text-sm" style={{ color: "#7A7974" }}>
               No sales call unless you ask for one. We respect your inbox more than your SIEM
               respects your AD.
