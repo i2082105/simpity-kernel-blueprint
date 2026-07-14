@@ -81,6 +81,7 @@ const App = () => (
             <Route path="/ai-workflow-security" element={<AIWorkflowSecurity />} />
             <Route path="/ai-agent-attack-hub" element={<AIAgentAttackHub />} />
             <Route path="/webinar/soc-already-lost" element={<SocAlreadyLost />} />
+            <Route path="/webinar/registrations" element={<WebinarRegistrations />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/security" element={<Security />} />
             <Route path="/terms" element={<Terms />} />
