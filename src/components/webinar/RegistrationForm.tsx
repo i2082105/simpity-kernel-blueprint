@@ -45,17 +45,35 @@ export function RegistrationForm() {
       return;
     }
     setErrors({});
+    setSubmitError(null);
     setBusy(true);
     try {
-      // TODO: wire to Instantly / Google Sheets / Cloud edge function
-      await fetch("/api/webinar-register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
-      }).catch(() => undefined);
+      const { data: res, error } = await supabase.functions.invoke("webinar-register", {
+        body: { ...parsed.data, webinar_slug: "soc-already-lost" },
+      });
+      if (error) {
+        setSubmitError("Something broke on our side. Try again in a moment.");
+        return;
+      }
+      if (res && typeof res === "object" && "error" in res) {
+        const code = (res as { error: string }).error;
+        if (code === "rate_limited") {
+          setSubmitError("Too many attempts. Wait an hour, then try again.");
+        } else if (code === "validation") {
+          setSubmitError("Check the fields and try again.");
+        } else {
+          setSubmitError("Something broke on our side. Try again in a moment.");
+        }
+        return;
+      }
+      if (res && (res as { already_registered?: boolean }).already_registered) {
+        setAlreadyRegistered(true);
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Network error. Check your connection and try again.");
     } finally {
       setBusy(false);
-      setSubmitted(true);
     }
   };
 
