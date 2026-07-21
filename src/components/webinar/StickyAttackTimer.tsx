@@ -19,7 +19,7 @@ export function StickyAttackTimer() {
         <span
           className="font-mono text-lg md:text-2xl font-bold"
           style={{ color: "#E5484D", fontVariantNumeric: "tabular-nums" }}
-          aria-label={`Attack timer ${mm} minutes ${ss} seconds`}
+          aria-label={`Elapsed ${mm} minutes ${ss} seconds`}
         >
           {mm}:{ss}
         </span>
@@ -27,7 +27,7 @@ export function StickyAttackTimer() {
           className="text-[11px] md:text-xs leading-tight"
           style={{ color: "#7A7974" }}
         >
-          This is how long an AI attacker needs to own your Active Directory.
+          This is how long a local admin needs to become Domain Admin — using only documented Windows APIs.
         </span>
       </div>
     </div>

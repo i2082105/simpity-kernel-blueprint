@@ -11,39 +11,56 @@ export function HeroSection({ onCTA }: { onCTA: () => void }) {
     return () => window.clearTimeout(t);
   }, [reduced]);
 
+  const claims = [
+    "The model refused.",
+    "Deny-Everyone was set.",
+    "No password was stolen.",
+    "Policy said OK.",
+  ];
+
   return (
     <section className="max-w-6xl mx-auto px-4 md:px-6 pt-12 md:pt-20 pb-16 md:pb-24">
       <h1
         className={`font-display font-bold tracking-tight ${glitch ? "wb-glitch" : ""}`}
         style={{
-          fontSize: "clamp(2.75rem, 9vw, 7.5rem)",
+          fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
           lineHeight: 0.95,
           color: "#EDEDEC",
         }}
       >
-        Your SOC already lost.
+        Your security boundary
         <br />
-        <span style={{ color: "#7A7974" }}>It just doesn't know yet.</span>
+        <span style={{ color: "#7A7974" }}>is not where you think it is.</span>
       </h1>
 
       <p
         className="mt-8 md:mt-10 max-w-3xl text-base md:text-xl leading-relaxed"
         style={{ color: "#EDEDEC" }}
       >
-        By the time your best analyst opens the alert, the attacker's AI has
-        already finished. Breakout time:{" "}
-        <span className="font-mono" style={{ fontVariantNumeric: "tabular-nums" }}>
-          29 minutes
-        </span>
-        . Fastest observed:{" "}
-        <span className="font-mono" style={{ fontVariantNumeric: "tabular-nums", color: "#E5484D" }}>
-          27 seconds
-        </span>
-        . Your average alert dwell time:{" "}
-        <span className="font-mono" style={{ fontVariantNumeric: "tabular-nums" }}>
-          56 minutes
-        </span>
-        .
+        Four live Windows, Active Directory and AI demos — why attackers (and
+        agents) win{" "}
+        <span style={{ color: "#E5484D" }}>one layer lower</span> than every
+        control you own.
+      </p>
+
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
+        {claims.map((c) => (
+          <div
+            key={c}
+            className="px-4 py-3 border font-mono text-xs md:text-sm"
+            style={{
+              borderColor: "#1a1a1c",
+              background: "#101012",
+              color: "#EDEDEC",
+            }}
+          >
+            <span style={{ color: "#7A7974" }}>✓ </span>
+            {c}
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 max-w-3xl text-base md:text-lg" style={{ color: "#E5484D" }}>
+        None of them stopped the attack.
       </p>
 
       <div className="mt-10 md:mt-14">

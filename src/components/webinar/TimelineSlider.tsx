@@ -1,29 +1,50 @@
 import { useState } from "react";
 
-// slider value in minutes: 0..240
-const CHECKPOINTS = [
-  { t: 0, label: "T+0", scenario: "AI agent issues a privileged AD modification." },
-  { t: 2, label: "T+2min", scenario: "Lateral movement begins." },
-  { t: 29, label: "T+29min", scenario: "Breakout complete." },
-  { t: 240, label: "T+4h", scenario: "Alert fires. Analyst notified. Data already exfiltrated." },
+const LAYERS = [
+  {
+    key: "interface",
+    label: "INTERFACE",
+    assume: "The UI blocked it. The chat model refused. The button is greyed out.",
+    reality:
+      "Interfaces enforce nothing. They render intent. The actual call never has to pass through them.",
+    tone: "#7A7974",
+  },
+  {
+    key: "policy",
+    label: "POLICY",
+    assume: "GPO applied. Password policy enforced. Deny ACE set on the sensitive object.",
+    reality:
+      "SamrSetInformationUser writes NT hashes directly. Deny ACEs can be silently removed. Policy is a suggestion at this layer.",
+    tone: "#EDEDEC",
+  },
+  {
+    key: "process",
+    label: "PROCESS / TOKEN",
+    assume: "The service runs under a scoped account. Tokens are protected by the OS.",
+    reality:
+      "OpenProcess → OpenProcessToken → DuplicateTokenEx → CreateProcessWithTokenW. Local admin becomes Domain Admin in <10 seconds. No password required.",
+    tone: "#E5484D",
+  },
+  {
+    key: "api",
+    label: "API / KERNEL",
+    assume: "The kernel is a black box, someone else's problem, out of scope.",
+    reality:
+      "This is the only layer where the outcome is actually decided. Prevention lives here or it does not exist.",
+    tone: "#01A9B0",
+  },
 ];
 
-function formatT(min: number) {
-  if (min < 60) return `T+${min}min`;
-  const h = Math.floor(min / 60);
-  const m = min % 60;
-  return m === 0 ? `T+${h}h` : `T+${h}h${m}m`;
-}
-
 export function TimelineSlider() {
-  const [t, setT] = useState(0);
-
-  const activeIdx = CHECKPOINTS.reduce((acc, cp, i) => (t >= cp.t ? i : acc), 0);
+  const [active, setActive] = useState(2);
 
   return (
-    <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t" style={{ borderColor: "#1a1a1c" }}>
+    <section
+      className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t"
+      style={{ borderColor: "#1a1a1c" }}
+    >
       <div className="font-mono text-xs tracking-widest mb-3" style={{ color: "#7A7974" }}>
-        DRAG THE TIMELINE. SEE WHERE EACH APPROACH ACTS.
+        THE FOUR LAYERS · CLICK EACH ONE
       </div>
       <h2
         className="font-display font-bold mb-10"
@@ -33,91 +54,71 @@ export function TimelineSlider() {
           color: "#EDEDEC",
         }}
       >
-        Prevention acts at T+0. Detection acts after the fact.
+        Every defender assumes the boundary is up here.
+        <br />
+        <span style={{ color: "#E5484D" }}>The attacker works down there.</span>
       </h2>
 
-      <div className="mb-10">
-        <div className="flex justify-between font-mono text-xs mb-2" style={{ color: "#7A7974" }}>
-          <span>T+0</span>
-          <span>T+2min</span>
-          <span>T+29min</span>
-          <span>T+4h</span>
-        </div>
-        <input
-          type="range"
-          min={0}
-          max={240}
-          value={t}
-          onChange={(e) => setT(Number(e.target.value))}
-          className="wb-range w-full"
-          aria-label="Attack timeline slider"
-        />
-        <div className="mt-3 font-mono text-sm" style={{ color: "#EDEDEC", fontVariantNumeric: "tabular-nums" }}>
-          NOW: {formatT(t)}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Prevention path */}
-        <div
-          className="p-6 border"
-          style={{
-            borderColor: "#01696F",
-            background: "rgba(1,105,111,0.1)",
-          }}
-        >
-          <div className="font-mono text-xs tracking-widest mb-4" style={{ color: "#01A9B0" }}>
-            PREVENTION PATH
-          </div>
-          <div className="font-display font-bold text-2xl md:text-3xl mb-2" style={{ color: "#01A9B0" }}>
-            BLOCKED @ T+0
-          </div>
-          <p className="text-sm md:text-base" style={{ color: "#EDEDEC" }}>
-            The privileged AD modification never commits. The kernel intercepts the syscall.
-            Nothing further happens. There is no incident to investigate.
-          </p>
+      <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6">
+        <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible">
+          {LAYERS.map((l, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={l.key}
+                onClick={() => setActive(i)}
+                className="text-left px-4 py-4 border font-mono text-xs tracking-widest shrink-0 transition-colors"
+                style={{
+                  borderColor: isActive ? l.tone : "#1a1a1c",
+                  background: isActive ? "rgba(255,255,255,0.03)" : "#101012",
+                  color: isActive ? l.tone : "#7A7974",
+                }}
+                aria-pressed={isActive}
+              >
+                <span className="opacity-60 mr-2">0{i + 1}</span>
+                {l.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Detection path */}
         <div
-          className="p-6 border"
-          style={{
-            borderColor: activeIdx >= 3 ? "#E5484D" : "#3a3a3d",
-            background: activeIdx >= 3 ? "rgba(229,72,77,0.08)" : "#101012",
-          }}
+          className="p-6 md:p-8 border"
+          style={{ borderColor: LAYERS[active].tone, background: "#101012" }}
         >
           <div
             className="font-mono text-xs tracking-widest mb-4"
-            style={{ color: activeIdx >= 3 ? "#E5484D" : "#7A7974" }}
+            style={{ color: LAYERS[active].tone }}
           >
-            DETECTION PATH
+            LAYER {active + 1} · {LAYERS[active].label}
           </div>
-          <div className="space-y-3">
-            {CHECKPOINTS.map((cp, i) => {
-              const reached = activeIdx >= i;
-              const isLast = i === CHECKPOINTS.length - 1;
-              const color = !reached
-                ? "#3a3a3d"
-                : isLast
-                ? "#E5484D"
-                : "#EDEDEC";
-              return (
-                <div key={cp.t} className="flex gap-4">
-                  <span
-                    className="font-mono text-xs w-16 shrink-0 pt-1"
-                    style={{ color, fontVariantNumeric: "tabular-nums" }}
-                  >
-                    {cp.label}
-                  </span>
-                  <span className="text-sm md:text-base" style={{ color }}>
-                    {cp.scenario}
-                  </span>
-                </div>
-              );
-            })}
+
+          <div className="mb-6">
+            <div className="font-mono text-[11px] tracking-widest mb-2" style={{ color: "#7A7974" }}>
+              WHAT DEFENDERS ASSUME LIVES HERE
+            </div>
+            <p className="text-base md:text-lg" style={{ color: "#EDEDEC" }}>
+              {LAYERS[active].assume}
+            </p>
+          </div>
+
+          <div>
+            <div
+              className="font-mono text-[11px] tracking-widest mb-2"
+              style={{ color: LAYERS[active].tone }}
+            >
+              WHAT ACTUALLY DECIDES THE OUTCOME
+            </div>
+            <p className="text-base md:text-lg" style={{ color: "#EDEDEC" }}>
+              {LAYERS[active].reality}
+            </p>
           </div>
         </div>
       </div>
+
+      <p className="mt-10 font-mono text-sm md:text-base" style={{ color: "#7A7974" }}>
+        Anchor phrase for the hour: <span style={{ color: "#EDEDEC" }}>"one layer lower."</span>
+      </p>
     </section>
   );
 }

@@ -1,35 +1,43 @@
 import { useState } from "react";
 
 const QUESTIONS = [
-  "Do you run Active Directory?",
-  "Have you deployed any AI agent, Copilot, or LLM with access to internal systems?",
-  "Is your security stack detection-only (SIEM / EDR / Defender)?",
+  "Which processes in your infrastructure must never be dumpable from memory?",
+  "Which privileged tokens must never be duplicated by an unapproved process?",
+  "Which Active Directory objects are protected below the ACL layer?",
+  "Which AI servers or agents are now sensitive infrastructure in your environment?",
+  "Which operations do you only log today, when you should be blocking them?",
 ];
 
-export function BreachabilityQuiz({ onCTA }: { onCTA: () => void }) {
-  const [answers, setAnswers] = useState<(boolean | null)[]>([null, null, null]);
-  const answered = answers.every((a) => a !== null);
-  const yesCount = answers.filter((a) => a === true).length;
+type Answer = "yes" | "unsure" | null;
 
-  const setAnswer = (i: number, val: boolean) =>
+export function BreachabilityQuiz({ onCTA }: { onCTA: () => void }) {
+  const [answers, setAnswers] = useState<Answer[]>(QUESTIONS.map(() => null));
+  const answered = answers.every((a) => a !== null);
+  const unsureCount = answers.filter((a) => a === "unsure").length;
+
+  const setAnswer = (i: number, val: Answer) =>
     setAnswers((prev) => prev.map((a, idx) => (idx === i ? val : a)));
 
   return (
-    <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t" style={{ borderColor: "#1a1a1c" }}>
+    <section
+      className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t"
+      style={{ borderColor: "#1a1a1c" }}
+    >
       <h2
-        className="font-display font-bold mb-12"
+        className="font-display font-bold mb-4"
         style={{
           fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
           lineHeight: 1.05,
           color: "#EDEDEC",
         }}
       >
-        Is your Active Directory already breachable?
-        <br />
-        <span style={{ color: "#7A7974" }}>Three questions.</span>
+        Five questions your CISO can't answer yet.
       </h2>
+      <p className="mb-10 max-w-3xl text-base md:text-lg" style={{ color: "#7A7974" }}>
+        Answer honestly. Every "I don't know" is one layer where the boundary is not enforced.
+      </p>
 
-      <div className="space-y-6 mb-10">
+      <div className="space-y-4 mb-10">
         {QUESTIONS.map((q, i) => (
           <div
             key={i}
@@ -46,21 +54,21 @@ export function BreachabilityQuiz({ onCTA }: { onCTA: () => void }) {
                 </span>
               </div>
               <div className="flex gap-2 shrink-0">
-                {[true, false].map((val) => {
+                {(["yes", "unsure"] as const).map((val) => {
                   const active = answers[i] === val;
                   return (
                     <button
-                      key={String(val)}
+                      key={val}
                       onClick={() => setAnswer(i, val)}
                       aria-pressed={active}
-                      className="px-5 py-2 font-mono text-xs tracking-widest border transition-colors"
+                      className="px-4 py-2 font-mono text-[11px] tracking-widest border transition-colors"
                       style={{
                         borderColor: active ? "#EDEDEC" : "#3a3a3d",
                         background: active ? "#EDEDEC" : "transparent",
                         color: active ? "#0B0B0C" : "#EDEDEC",
                       }}
                     >
-                      {val ? "YES" : "NO"}
+                      {val === "yes" ? "I CAN ANSWER" : "I DON'T KNOW"}
                     </button>
                   );
                 })}
@@ -74,38 +82,52 @@ export function BreachabilityQuiz({ onCTA }: { onCTA: () => void }) {
         <div
           className="p-6 md:p-8 border-l-4 animate-fade-in"
           style={{
-            borderColor: yesCount === 3 ? "#E5484D" : yesCount === 0 ? "#3a3a3d" : "#E5484D",
-            background: yesCount === 3 ? "rgba(229,72,77,0.1)" : "#101012",
+            borderColor: unsureCount >= 3 ? "#E5484D" : unsureCount === 0 ? "#01696F" : "#EDEDEC",
+            background:
+              unsureCount >= 3
+                ? "rgba(229,72,77,0.1)"
+                : unsureCount === 0
+                ? "rgba(1,105,111,0.08)"
+                : "#101012",
           }}
         >
-          {yesCount === 3 && (
+          {unsureCount >= 3 && (
             <>
-              <div className="font-display font-bold text-xl md:text-2xl mb-3" style={{ color: "#E5484D" }}>
-                The path is already open in your environment.
+              <div
+                className="font-display font-bold text-xl md:text-2xl mb-3"
+                style={{ color: "#E5484D" }}
+              >
+                Your boundary is drawn on paper.
               </div>
               <p className="text-base md:text-lg mb-6" style={{ color: "#EDEDEC" }}>
-                The same one that hit the companies above. Come watch us break it — and then stop
-                it.
+                {unsureCount} of 5 answers are "I don't know". That's {unsureCount} layers where
+                policy is not enforcement. Come see what actually decides the outcome.
               </p>
             </>
           )}
-          {yesCount > 0 && yesCount < 3 && (
+          {unsureCount > 0 && unsureCount < 3 && (
             <>
-              <div className="font-display font-bold text-xl md:text-2xl mb-3" style={{ color: "#EDEDEC" }}>
-                You're closer to exposed than you think.
+              <div
+                className="font-display font-bold text-xl md:text-2xl mb-3"
+                style={{ color: "#EDEDEC" }}
+              >
+                You're closer to the boundary than most.
               </div>
               <p className="text-base md:text-lg mb-6" style={{ color: "#EDEDEC" }}>
-                See exactly where.
+                {unsureCount} unanswered. Come watch the demos that map directly to those gaps.
               </p>
             </>
           )}
-          {yesCount === 0 && (
+          {unsureCount === 0 && (
             <>
-              <div className="font-display font-bold text-xl md:text-2xl mb-3" style={{ color: "#EDEDEC" }}>
-                You're not the audience.
+              <div
+                className="font-display font-bold text-xl md:text-2xl mb-3"
+                style={{ color: "#01A9B0" }}
+              >
+                You're already operating at the boundary layer.
               </div>
-              <p className="text-base md:text-lg mb-6" style={{ color: "#7A7974" }}>
-                Come anyway. You'll see what your peers are about to lose.
+              <p className="text-base md:text-lg mb-6" style={{ color: "#EDEDEC" }}>
+                Come anyway. Bring your team. The 60 minutes are worth it just for Act 3.
               </p>
             </>
           )}
@@ -113,11 +135,11 @@ export function BreachabilityQuiz({ onCTA }: { onCTA: () => void }) {
             onClick={onCTA}
             className="inline-flex items-center gap-3 px-6 py-3 font-display font-bold text-sm md:text-base tracking-wider"
             style={{
-              background: yesCount === 3 ? "#E5484D" : "#EDEDEC",
+              background: unsureCount >= 3 ? "#E5484D" : "#EDEDEC",
               color: "#0B0B0C",
             }}
           >
-            {yesCount === 3 ? "GET THE SEAT" : "TAKE A SEAT"} →
+            TAKE A SEAT →
           </button>
         </div>
       )}

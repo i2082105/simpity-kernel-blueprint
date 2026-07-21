@@ -1,11 +1,14 @@
 export function DemoHook() {
   const bullets = [
-    "Watch a prompt-injected agent exfiltrate data using a real user's identity.",
-    "Watch the same attack die at T+0 — blocked at the system-call level, before it commits.",
-    "Leave with a 90-day plan to close the gap between what your stack detects and what it prevents.",
+    "Watch a local LLM refuse an unsafe request — then watch its own RAM leak the chat and the password.",
+    "Watch a local admin become Domain Admin in under 10 seconds without a password, without Mimikatz, without alerts.",
+    "Watch an agentic AI model quietly strip a Deny ACE — then watch every alternative bypass die at Access Denied once the boundary lives at the API layer.",
   ];
   return (
-    <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t" style={{ borderColor: "#1a1a1c" }}>
+    <section
+      className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t"
+      style={{ borderColor: "#1a1a1c" }}
+    >
       <h2
         className="font-display font-bold mb-12"
         style={{
@@ -14,10 +17,9 @@ export function DemoHook() {
           color: "#EDEDEC",
         }}
       >
-        We'll break an AI agent live.
+        Four demos. One thesis.
         <br />
-        Then we'll stop it.{" "}
-        <span style={{ color: "#7A7974" }}>Same attack. Two outcomes.</span>
+        <span style={{ color: "#7A7974" }}>One layer lower.</span>
       </h2>
       <ul className="space-y-6 max-w-3xl">
         {bullets.map((b, i) => (
@@ -28,7 +30,10 @@ export function DemoHook() {
             >
               0{i + 1}
             </span>
-            <span className="text-base md:text-lg leading-relaxed" style={{ color: "#EDEDEC" }}>
+            <span
+              className="text-base md:text-lg leading-relaxed"
+              style={{ color: "#EDEDEC" }}
+            >
               {b}
             </span>
           </li>
