@@ -55,12 +55,12 @@ export default function SocAlreadyLost() {
 
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = "Your SOC already lost. | Simpity Webinar";
+    document.title = "Your Security Boundary Is Not Where You Think It Is | SimpITy Webinar";
     const meta = document.querySelector('meta[name="description"]');
     const prevDesc = meta?.getAttribute("content") ?? null;
     meta?.setAttribute(
       "content",
-      "Live webinar: we break an AI agent, then stop it at the system-call level. Simpity."
+      "Live 60-minute webinar: four Windows, Active Directory and AI demos showing why the real security boundary sits one layer lower than your controls."
     );
     return () => {
       document.title = prevTitle;
