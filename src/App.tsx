@@ -35,7 +35,7 @@ import DomainAdminTokenTheft from "./pages/blog/DomainAdminTokenTheft";
 import AIWorkflowSecurity from "./pages/AIWorkflowSecurity";
 import AIAgentAttackHub from "./pages/AIAgentAttackHub";
 import SocAlreadyLost from "./pages/webinar/SocAlreadyLost";
-import WebinarRegistrations from "./pages/webinar/Registrations";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -81,7 +81,7 @@ const App = () => (
             <Route path="/ai-workflow-security" element={<AIWorkflowSecurity />} />
             <Route path="/ai-agent-attack-hub" element={<AIAgentAttackHub />} />
             <Route path="/webinar/soc-already-lost" element={<SocAlreadyLost />} />
-            <Route path="/webinar/registrations" element={<WebinarRegistrations />} />
+            
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/security" element={<Security />} />
             <Route path="/terms" element={<Terms />} />
