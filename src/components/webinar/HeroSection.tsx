@@ -72,7 +72,7 @@ export function HeroSection({ onCTA }: { onCTA: () => void }) {
             color: "#0B0B0C",
           }}
         >
-          TAKE A SEAT
+          RESERVE YOUR SEAT
           <span aria-hidden="true">→</span>
         </button>
       </div>

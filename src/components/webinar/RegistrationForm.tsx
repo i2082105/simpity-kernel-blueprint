@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
+
+// TODO: replace with the real Google Form viewform URL once available.
+// Example: "https://docs.google.com/forms/d/e/1FAIpQLSxxxxxxxx/viewform"
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/REPLACE_WITH_FORM_ID/viewform";
+
+// If/when the form's entry IDs are known, map them here to prefill:
+// { email: "entry.111", name: "entry.222", company: "entry.333", role: "entry.444" }
+const GOOGLE_FORM_ENTRY_IDS: Partial<Record<"email" | "name" | "company" | "role", string>> = {};
+
+const POPUP_URL =
+  "https://popup.fm/3v89JYZiWPSsX639qd56/events/nQ4BqioE8wHxJpLoCvqN?formOpen=register";
 
 const schema = z.object({
   email: z.string().trim().email({ message: "That's not an email." }).max(255),
@@ -12,14 +22,23 @@ const schema = z.object({
 
 type Errors = Partial<Record<keyof z.infer<typeof schema>, string>>;
 
+function buildGoogleFormUrl(fields: { email: string; name: string; company: string; role: string }) {
+  const params = new URLSearchParams();
+  params.set("usp", "pp_url");
+  (Object.keys(GOOGLE_FORM_ENTRY_IDS) as Array<keyof typeof GOOGLE_FORM_ENTRY_IDS>).forEach((k) => {
+    const entry = GOOGLE_FORM_ENTRY_IDS[k];
+    const value = fields[k];
+    if (entry && value) params.set(entry, value);
+  });
+  const query = params.toString();
+  return query ? `${GOOGLE_FORM_URL}?${query}` : GOOGLE_FORM_URL;
+}
+
 export function RegistrationForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [alreadyRegistered, setAlreadyRegistered] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [busy, setBusy] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const data = {
@@ -40,41 +59,19 @@ export function RegistrationForm() {
       return;
     }
     if (parsed.data.website) {
-      // silent honeypot success
-      setSubmitted(true);
+      // honeypot — silently drop to Popup
+      window.location.href = POPUP_URL;
       return;
     }
     setErrors({});
-    setSubmitError(null);
     setBusy(true);
-    try {
-      const { data: res, error } = await supabase.functions.invoke("webinar-register", {
-        body: { ...parsed.data, webinar_slug: "soc-already-lost" },
-      });
-      if (error) {
-        setSubmitError("Something broke on our side. Try again in a moment.");
-        return;
-      }
-      if (res && typeof res === "object" && "error" in res) {
-        const code = (res as { error: string }).error;
-        if (code === "rate_limited") {
-          setSubmitError("Too many attempts. Wait an hour, then try again.");
-        } else if (code === "validation") {
-          setSubmitError("Check the fields and try again.");
-        } else {
-          setSubmitError("Something broke on our side. Try again in a moment.");
-        }
-        return;
-      }
-      if (res && (res as { already_registered?: boolean }).already_registered) {
-        setAlreadyRegistered(true);
-      }
-      setSubmitted(true);
-    } catch {
-      setSubmitError("Network error. Check your connection and try again.");
-    } finally {
-      setBusy(false);
-    }
+    const target = buildGoogleFormUrl({
+      email: parsed.data.email,
+      name: parsed.data.name,
+      company: parsed.data.company ?? "",
+      role: parsed.data.role ?? "",
+    });
+    window.location.href = target;
   };
 
   return (
@@ -83,69 +80,55 @@ export function RegistrationForm() {
       className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 border-t"
       style={{ borderColor: "#1a1a1c" }}
     >
+      <div className="font-mono text-xs tracking-widest mb-4" style={{ color: "#7A7974" }}>
+        WEBINAR REGISTRATION
+      </div>
       <h2
-        className="font-display font-bold mb-10"
+        className="font-display font-bold mb-6"
         style={{
           fontSize: "clamp(2rem, 6vw, 4.5rem)",
           lineHeight: 1,
           color: "#EDEDEC",
         }}
       >
-        Take the seat.
+        Your Security Boundary
         <br />
-        <span style={{ color: "#7A7974" }}>Or keep watching your dashboards.</span>
+        <span style={{ color: "#7A7974" }}>Is Not Where You Think It Is.</span>
       </h2>
+      <p className="max-w-2xl text-base md:text-lg mb-10" style={{ color: "#EDEDEC" }}>
+        Two steps, about 60 seconds. Quick ICP form first, then confirm your seat on Popup and get
+        the join link.
+      </p>
 
-      {submitted ? (
-        <div
-          className="p-8 md:p-10 border-l-4 max-w-2xl"
-          style={{ borderColor: "#01696F", background: "rgba(1,105,111,0.1)" }}
-        >
-          <div className="font-display font-bold text-2xl md:text-3xl mb-3" style={{ color: "#EDEDEC" }}>
-            {alreadyRegistered ? "Already on the list." : "You're in."}
-          </div>
-          <p className="text-base md:text-lg" style={{ color: "#EDEDEC" }}>
-            {alreadyRegistered
-              ? "This email is already registered. We'll send the link before the session."
-              : "We've got your seat. The attack we'll break is already running in someone's network right now."}
+      <form onSubmit={handleSubmit} className="max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-5" noValidate>
+        <Field label="Work email *" name="email" type="email" error={errors.email} required autoComplete="email" />
+        <Field label="Full name *" name="name" type="text" error={errors.name} required autoComplete="name" />
+        <Field label="Company" name="company" type="text" error={errors.company} autoComplete="organization" />
+        <Field label="Role" name="role" type="text" error={errors.role} autoComplete="organization-title" />
+
+        {/* honeypot */}
+        <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+          <label>
+            Website
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+
+        <div className="md:col-span-2 mt-2">
+          <button
+            type="submit"
+            disabled={busy}
+            className="w-full md:w-auto px-8 py-4 font-display font-bold text-base md:text-lg tracking-wider disabled:opacity-60"
+            style={{ background: "#E5484D", color: "#0B0B0C" }}
+          >
+            {busy ? "REDIRECTING…" : "RESERVE MY SEAT →"}
+          </button>
+          <p className="mt-4 text-xs md:text-sm" style={{ color: "#7A7974" }}>
+            Step 1 of 2 — you'll be taken to a short qualification form, then to Popup to
+            confirm your seat. No sales call unless you ask for one.
           </p>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-5" noValidate>
-          <Field label="Work email *" name="email" type="email" error={errors.email} required autoComplete="email" />
-          <Field label="Full name *" name="name" type="text" error={errors.name} required autoComplete="name" />
-          <Field label="Company" name="company" type="text" error={errors.company} autoComplete="organization" />
-          <Field label="Role" name="role" type="text" error={errors.role} autoComplete="organization-title" />
-
-          {/* honeypot */}
-          <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
-            <label>
-              Website
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
-            </label>
-          </div>
-
-          <div className="md:col-span-2 mt-2">
-            <button
-              type="submit"
-              disabled={busy}
-              className="w-full md:w-auto px-8 py-4 font-display font-bold text-base md:text-lg tracking-wider disabled:opacity-60"
-              style={{ background: "#E5484D", color: "#0B0B0C" }}
-            >
-              {busy ? "SECURING…" : "SECURE MY SEAT →"}
-            </button>
-            {submitError && (
-              <p className="mt-3 text-sm font-mono" style={{ color: "#E5484D" }}>
-                {submitError}
-              </p>
-            )}
-            <p className="mt-4 text-xs md:text-sm" style={{ color: "#7A7974" }}>
-              No sales call unless you ask for one. We respect your inbox more than your SIEM
-              respects your AD.
-            </p>
-          </div>
-        </form>
-      )}
+      </form>
     </section>
   );
 }
