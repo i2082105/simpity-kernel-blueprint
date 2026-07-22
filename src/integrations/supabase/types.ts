@@ -14,45 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      webinar_registrations: {
-        Row: {
-          company: string | null
-          created_at: string
-          email: string
-          id: string
-          ip_hash: string | null
-          name: string
-          referrer: string | null
-          role: string | null
-          user_agent: string | null
-          webinar_slug: string
-        }
-        Insert: {
-          company?: string | null
-          created_at?: string
-          email: string
-          id?: string
-          ip_hash?: string | null
-          name: string
-          referrer?: string | null
-          role?: string | null
-          user_agent?: string | null
-          webinar_slug?: string
-        }
-        Update: {
-          company?: string | null
-          created_at?: string
-          email?: string
-          id?: string
-          ip_hash?: string | null
-          name?: string
-          referrer?: string | null
-          role?: string | null
-          user_agent?: string | null
-          webinar_slug?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
