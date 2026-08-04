@@ -15,6 +15,7 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
+      <WebinarPromoBanner />
       <AISecurityBanner />
       <TrustedBySection />
       <CapabilitiesOverview />
