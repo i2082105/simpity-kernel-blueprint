@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Cpu, Lock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Shield, Cpu, Lock, CheckCircle2, Radio } from "lucide-react";
+import { computeTaken } from "@/components/webinar/StickySeatsBar";
+
+const TOTAL_SEATS = 60;
 
 const technicalProof = [
   "Kernel callbacks and runtime enforcement",
