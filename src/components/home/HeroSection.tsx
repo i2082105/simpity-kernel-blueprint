@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Cpu, Lock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Shield, Cpu, Lock, CheckCircle2, Radio } from "lucide-react";
+import { computeTaken } from "@/components/webinar/StickySeatsBar";
+
+const TOTAL_SEATS = 60;
 
 const technicalProof = [
   "Kernel callbacks and runtime enforcement",
@@ -12,6 +15,8 @@ const technicalProof = [
 ];
 
 export function HeroSection() {
+  const seatsLeft = TOTAL_SEATS - computeTaken();
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background effects */}
@@ -20,10 +25,33 @@ export function HeroSection() {
       <div className="absolute top-20 right-20 w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-pulse-glow" />
       
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
+        {/* Webinar strip - first thing visible */}
+        <Link
+          to="/webinar/soc-already-lost"
+          className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 mb-10 p-4 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-colors animate-fade-in"
+        >
+          <span className="inline-flex items-center gap-2 shrink-0">
+            <Radio className="w-4 h-4 text-primary animate-pulse" />
+            <span className="text-xs font-mono tracking-widest text-primary">LIVE WEBINAR</span>
+          </span>
+          <span className="flex-1 text-sm md:text-base text-foreground">
+            <span className="font-semibold">Your Security Boundary Is Not Where You Think It Is</span>
+            <span className="text-muted-foreground"> — 4 live demos · 60 min · free</span>
+          </span>
+          <span className="inline-flex items-center gap-3 shrink-0">
+            <span className="text-xs font-mono text-primary">{seatsLeft} seats left</span>
+            <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+              Reserve my seat
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </span>
+        </Link>
+
         {/* 50/50 Grid Layout */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="max-w-xl">
+
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
