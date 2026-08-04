@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { StickyAttackTimer } from "@/components/webinar/StickyAttackTimer";
+import { StickySeatsBar } from "@/components/webinar/StickySeatsBar";
 import { HeroSection } from "@/components/webinar/HeroSection";
 import { BigNumbers } from "@/components/webinar/BigNumbers";
 import { Indictment } from "@/components/webinar/Indictment";
@@ -71,8 +71,8 @@ export default function SocAlreadyLost() {
   return (
     <div className="wb-page min-h-screen" style={{ background: "#0B0B0C" }}>
       <style>{PAGE_STYLE}</style>
-      <StickyAttackTimer />
-      {/* spacer for sticky timer */}
+      <StickySeatsBar />
+      {/* spacer for sticky bar */}
       <div style={{ height: 56 }} />
       <HeroSection onCTA={scrollToRegister} />
       <BigNumbers />
