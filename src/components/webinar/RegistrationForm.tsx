@@ -29,7 +29,7 @@ export function RegistrationForm() {
       </p>
       <p className="max-w-2xl font-mono text-xs md:text-sm mb-10" style={{ color: "#7A7974" }}>
         <time dateTime="2026-09-17T17:00:00+02:00">
-          September 17, 2026 · 17:00 CEST / 11:00 AM ET
+          September 17, 2026 · 17:00 CEST / 11:00 AM ET / 8:00 AM PT
         </time>{" "}
         · 60 minutes · Live technical session
       </p>

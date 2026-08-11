@@ -1,4 +1,4 @@
-const DATE_TIME = "September 17, 2026 · 17:00 CEST / 11:00 AM ET";
+const DATE_TIME = "September 17, 2026 · 17:00 CEST / 11:00 AM ET / 8:00 AM PT";
 
 export function WebinarDetails() {
   return (

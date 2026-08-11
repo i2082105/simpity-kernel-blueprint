@@ -18,7 +18,7 @@ export function WebinarPromoBanner() {
             <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-primary/40 bg-primary/10">
               <Radio className="w-3.5 h-3.5 text-primary animate-pulse" />
               <span className="text-xs font-mono tracking-widest text-primary">
-                LIVE WEBINAR · SEPT 17 · 17:00 CEST · 60 MIN
+                LIVE WEBINAR · SEPT 17 · 17:00 CEST / 11:00 AM ET · 60 MIN
               </span>
             </div>
             <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-3 leading-tight">

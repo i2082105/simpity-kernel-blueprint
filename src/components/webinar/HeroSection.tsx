@@ -53,7 +53,7 @@ export function HeroSection({ onCTA }: { onCTA: () => void }) {
         className="mt-10 inline-block border px-4 py-3 font-mono text-xs md:text-sm tracking-wide"
         style={{ borderColor: "#1a1a1c", background: "#101012", color: "#EDEDEC" }}
       >
-        September 17, 2026 · 17:00 CEST / 11:00 AM ET · 60 minutes · Live technical session
+        September 17, 2026 · 17:00 CEST / 11:00 AM ET / 8:00 AM PT · 60 minutes · Live technical session
       </div>
 
       <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
