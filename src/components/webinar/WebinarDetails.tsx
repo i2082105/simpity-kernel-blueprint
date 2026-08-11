@@ -1,5 +1,4 @@
-// EDIT THIS ONE LINE WHEN THE DATE IS SET:
-const DATE_TIME_TBD = "Date & time — announcing shortly.";
+const DATE_TIME = "September 17, 2026 · 17:00 CEST / 11:00 AM ET";
 
 export function WebinarDetails() {
   return (
@@ -8,7 +7,7 @@ export function WebinarDetails() {
       style={{ borderColor: "#1a1a1c" }}
     >
       <div className="font-mono text-xs tracking-widest mb-4" style={{ color: "#7A7974" }}>
-        LIVE WEBINAR · 60 MIN · ENGLISH · FOUR LIVE DEMOS
+        LIVE WEBINAR · 60 MIN · ENGLISH · LIVE TECHNICAL SESSION
       </div>
       <h2
         className="font-display font-bold mb-8"
@@ -18,13 +17,14 @@ export function WebinarDetails() {
           color: "#EDEDEC",
         }}
       >
-        Your Security Boundary Is Not
+        Your SOC Has
         <br />
-        <span style={{ color: "#7A7974" }}>Where You Think It Is.</span>
+        <span style={{ color: "#7A7974" }}>Already Lost.</span>
       </h2>
       <p className="max-w-3xl text-base md:text-lg" style={{ color: "#EDEDEC" }}>
-        Four Windows, Active Directory and AI demos on current systems. Local AI memory leak.
-        Token-theft to Domain Admin. Password-policy bypass via <span className="font-mono">SamrSetInformationUser</span>. Agentic AI vs. kernel-level protection.
+        Agent-driven attack execution, Windows authentication failures below the log layer, and a
+        real multi-vendor Credential Provider conflict — validated against the September Windows
+        security update.
       </p>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -33,19 +33,27 @@ export function WebinarDetails() {
             WHEN
           </div>
           <p className="text-lg md:text-xl" style={{ color: "#EDEDEC" }}>
-            {DATE_TIME_TBD}
+            <time dateTime="2026-09-17T17:00:00+02:00">{DATE_TIME}</time>
+          </p>
+          <p className="text-sm mt-2" style={{ color: "#7A7974" }}>
+            60 minutes · English
           </p>
         </div>
         <div>
           <div className="font-mono text-xs tracking-widest mb-3" style={{ color: "#7A7974" }}>
             SPEAKER
           </div>
-          <p className="text-lg md:text-xl mb-2" style={{ color: "#EDEDEC" }}>
-            <strong>Alexei Belous</strong> — SimpITy.
+          <p className="text-lg md:text-xl mb-1" style={{ color: "#EDEDEC" }}>
+            <strong>Alexei Belous</strong>
           </p>
-          <p className="text-sm md:text-base" style={{ color: "#7A7974" }}>
-            Built the prevention layer inside Netwrix Threat Prevention. 20+ years of Windows,
-            Active Directory and kernel-level identity security.
+          <p className="text-sm md:text-base mb-3" style={{ color: "#7A7974" }}>
+            Co-founder, Simpity
+          </p>
+          <p className="text-sm md:text-base leading-relaxed" style={{ color: "#7A7974" }}>
+            Alexei works with security-product teams solving engineering problems at the
+            undocumented layer of Windows. Simpity's engineers have spent years building and
+            supporting enterprise security products across Active Directory, authentication,
+            endpoint protection and identity security.
           </p>
         </div>
       </div>
