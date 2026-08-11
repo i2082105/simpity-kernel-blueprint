@@ -139,7 +139,7 @@ export function BreachabilityQuiz({ onCTA }: { onCTA: () => void }) {
               color: "#0B0B0C",
             }}
           >
-            RESERVE MY SEAT →
+            RESERVE YOUR SEAT →
           </button>
         </div>
       )}

@@ -35,13 +35,13 @@ export function HeroSection() {
             <span className="text-xs font-mono tracking-widest text-primary">LIVE WEBINAR</span>
           </span>
           <span className="flex-1 text-sm md:text-base text-foreground">
-            <span className="font-semibold">Your Security Boundary Is Not Where You Think It Is</span>
-            <span className="text-muted-foreground"> — 4 live demos · 60 min · free</span>
+            <span className="font-semibold">Your SOC Has Already Lost</span>
+            <span className="text-muted-foreground"> — Sept 17, 17:00 CEST · 60 min · free</span>
           </span>
           <span className="inline-flex items-center gap-3 shrink-0">
             <span className="text-xs font-mono text-primary">{seatsLeft} seats left</span>
             <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-              Reserve my seat
+              Reserve your seat
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </span>
           </span>
