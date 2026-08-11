@@ -36,7 +36,7 @@ export function HeroSection() {
           </span>
           <span className="flex-1 text-sm md:text-base text-foreground">
             <span className="font-semibold">Your SOC Has Already Lost</span>
-            <span className="text-muted-foreground"> — Sept 17, 17:00 CEST · 60 min · free</span>
+            <span className="text-muted-foreground"> — Sept 17, 17:00 CEST / 11:00 AM ET · 60 min · free</span>
           </span>
           <span className="inline-flex items-center gap-3 shrink-0">
             <span className="text-xs font-mono text-primary">{seatsLeft} seats left</span>

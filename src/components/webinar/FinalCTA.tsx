@@ -19,7 +19,7 @@ export function FinalCTA({ onCTA }: { onCTA: () => void }) {
         on logs, queues and human decisions.
       </p>
       <p className="mt-6 font-mono text-xs md:text-sm tracking-widest" style={{ color: "#7A7974" }}>
-        SEPTEMBER 17, 2026 · 17:00 CEST / 11:00 AM ET
+        SEPTEMBER 17, 2026 · 17:00 CEST / 11:00 AM ET / 8:00 AM PT
       </p>
 
       <div className="mt-10">
