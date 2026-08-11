@@ -1,19 +1,34 @@
 const TOTAL_SEATS = 60;
-const START_TAKEN = 8;
-const MAX_TAKEN = 54;
+// Seats taken on the anchor day → 36 left.
+const START_TAKEN = 24;
+// Never show fewer than 4 left, so the page never reads "sold out".
+const MAX_TAKEN = 56;
 // Anchor day (UTC) from which the fill starts at START_TAKEN.
-const ANCHOR_MS = Date.UTC(2026, 6, 27);
+const ANCHOR_MS = Date.UTC(2026, 7, 11);
+// Webinar day (UTC) — the counter stops moving after this.
+const WEBINAR_MS = Date.UTC(2026, 8, 17);
 
-function jitter(dayIndex: number) {
-  // deterministic 0..2 based on the day number
-  const x = Math.sin(dayIndex * 12.9898) * 43758.5453;
-  return Math.floor((x - Math.floor(x)) * 3);
+function rand(n: number) {
+  const x = Math.sin(n * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
 }
 
+// One seat goes every 2 or 3 days, deterministically per booking index.
 export function computeTaken(now: number = Date.now()) {
-  const days = Math.max(0, Math.floor((now - ANCHOR_MS) / 86_400_000));
-  const raw = START_TAKEN + Math.floor(days * 3) + jitter(days);
-  return Math.min(MAX_TAKEN, Math.max(START_TAKEN, raw));
+  const capped = Math.min(now, WEBINAR_MS);
+  const days = Math.max(0, Math.floor((capped - ANCHOR_MS) / 86_400_000));
+
+  let taken = START_TAKEN;
+  let elapsed = 0;
+  let i = 0;
+  while (taken < MAX_TAKEN) {
+    const gap = rand(i) < 0.5 ? 2 : 3;
+    if (elapsed + gap > days) break;
+    elapsed += gap;
+    taken += 1;
+    i += 1;
+  }
+  return Math.min(MAX_TAKEN, taken);
 }
 
 export function StickySeatsBar() {
